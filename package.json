@@ -8,7 +8,11 @@
   },
   "dependencies": {
     "egg": "^2.15.1",
-    "egg-scripts": "^2.11.0"
+    "egg-jwt": "^3.1.7",
+    "egg-mongoose": "^3.2.0",
+    "egg-scripts": "^2.11.0",
+    "egg-view-assets": "^1.6.1",
+    "egg-view-nunjucks": "^2.2.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -17,7 +21,8 @@
     "egg-ci": "^1.11.0",
     "egg-mock": "^3.21.0",
     "eslint": "^5.13.0",
-    "eslint-config-egg": "^7.1.0"
+    "eslint-config-egg": "^7.1.0",
+    "umi": "^3.2.7"
   },
   "engines": {
     "node": ">=10.0.0"
