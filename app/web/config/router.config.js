@@ -25,32 +25,23 @@ export default [
           },
           {
             path: '/welcome',
-            name: 'welcome',
+            name: '欢迎',
             icon: 'smile',
             component: './Welcome',
           },
           {
-            path: '/admin',
-            name: 'admin',
+            path: '/account',
+            name: '账号管理',
             icon: 'crown',
-            component: './Admin',
+            component: './Account',
             authority: ['admin'],
-            routes: [
-              {
-                path: '/admin/sub-page',
-                name: 'sub-page',
-                icon: 'smile',
-                component: './Welcome',
-                authority: ['admin'],
-              },
-            ],
           },
-          {
-            name: 'list.table-list',
-            icon: 'table',
-            path: '/list',
-            component: './ListTableList',
-          },
+          // {
+          //   name: 'list.table-list',
+          //   icon: 'table',
+          //   path: '/list',
+          //   component: './ListTableList',
+          // },
           {
             component: './404',
           },
