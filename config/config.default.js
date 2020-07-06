@@ -82,6 +82,17 @@ module.exports = appInfo => {
     },
   };
 
+  config.development = {
+    overrideDefault: true,
+    watchDirs: [
+      'app/controller',
+      'app/router.js',
+      'app/service',
+      'config', 'mocks', 'mocks_proxy', 'app.js',
+    ],
+    ignoreDirs: [ 'app/web' ],
+  };
+
   return {
     ...config,
     ...userConfig,

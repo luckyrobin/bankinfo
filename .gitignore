@@ -12,3 +12,10 @@ run/
 *.un~
 typings/
 .nyc_output/
+
+# umi
+/src/.umi
+app/public
+config/manifest.json
+app/web/.temp
+.umi
