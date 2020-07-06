@@ -86,8 +86,12 @@ module.exports = appInfo => {
     overrideDefault: true,
     watchDirs: [
       'app/controller',
-      'app/router.js',
+      'app/extend',
+      'app/middleware',
+      'app/model',
+      'app/schedule',
       'app/service',
+      'app/router.js',
       'config', 'mocks', 'mocks_proxy', 'app.js',
     ],
     ignoreDirs: [ 'app/web' ],
