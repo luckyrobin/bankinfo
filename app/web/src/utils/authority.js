@@ -25,9 +25,17 @@ export function getAuthority(str) {
 
   return authority;
 }
-export function setAuthority(authority) {
+export function setAuthority(authority, token) {
   const proAuthority = typeof authority === 'string' ? [authority] : authority;
   localStorage.setItem('antd-pro-authority', JSON.stringify(proAuthority)); // auto reload
+  localStorage.setItem('token', token);
+
+  reloadAuthorized();
+}
+
+export function removeAuthority() {
+  localStorage.removeItem('antd-pro-authority');
+  localStorage.removeItem('token');
 
   reloadAuthorized();
 }

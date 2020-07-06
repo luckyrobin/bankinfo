@@ -1,7 +1,7 @@
 import { stringify } from 'querystring';
 import { history } from 'umi';
 import { fakeAccountLogin } from '@/services/login';
-import { setAuthority } from '@/utils/authority';
+import { setAuthority, removeAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 
 const Model = {
@@ -45,6 +45,7 @@ const Model = {
       const { redirect } = getPageQuery(); // Note: There may be security issues, please note
 
       if (window.location.pathname !== '/user/login' && !redirect) {
+        removeAuthority();
         history.replace({
           pathname: '/user/login',
           search: stringify({
@@ -56,8 +57,8 @@ const Model = {
   },
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
-      return { ...state, status: payload.status, type: payload.type };
+      setAuthority(payload.currentAuthority, payload.token);
+      return { ...state, status: payload.status };
     },
   },
 };

@@ -2,8 +2,10 @@
  * request 网络请求工具
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
-import { extend } from 'umi-request';
+import { extend, ResponseError } from 'umi-request';
 import { notification } from 'antd';
+
+const CUSTOM_RESPONSE = 'custom_response';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -27,7 +29,14 @@ const codeMessage = {
  */
 
 const errorHandler = error => {
-  const { response } = error;
+  const { response, data } = error;
+  if (data === CUSTOM_RESPONSE) {
+    notification.error({
+      message: '请求错误',
+      description: error.message,
+    });
+    return response;
+  }
 
   if (response && response.status) {
     const errorText = codeMessage[response.status] || response.statusText;
@@ -53,5 +62,36 @@ const request = extend({
   errorHandler,
   // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+request.interceptors.request.use((url, options) => {
+  const merged = options;
+  merged.headers.Authorization = global.localStorage.getItem('token');
+  return {
+    url: `${url}`,
+    options: { ...merged, },
+  };
+});
+
+request.interceptors.response.use(async response => {
+  if (response.status !== 200) {
+    throw new ResponseError(response);
+  }
+  const resp = await response.clone().json();
+  const { code, msg } = resp;
+  switch (code) {
+    case 0: {
+      return resp.data;
+    }
+    case 401: {
+      throw new ResponseError(response, '未登录或者登录过期，请重新登录', CUSTOM_RESPONSE);
+    }
+    default: {
+      throw new ResponseError(response, msg || codeMessage[code], CUSTOM_RESPONSE);
+    }
+  }
 });
 export default request;
