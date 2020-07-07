@@ -9,3 +9,9 @@ export async function queryCurrent() {
 export async function queryNotices() {
   return request('/api/notices');
 }
+export async function updateUser(params) {
+  return request(`/api/user/${params._id}`, {
+    method: 'PUT',
+    data: params,
+  });
+}

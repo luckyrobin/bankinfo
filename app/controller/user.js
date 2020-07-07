@@ -4,11 +4,11 @@ const HttpController = require('./base/http');
 
 class UserController extends HttpController {
   async create() {
-    const { request } = this.ctx;
+    const { request, service } = this.ctx;
     const body = request.body;
 
     try {
-      const resp = await this.service.user.create({
+      const resp = await service.user.create({
         name: body.name,
         phone: body.phone,
         password: body.password,
@@ -16,6 +16,46 @@ class UserController extends HttpController {
 
       this.success({
         data: resp,
+      });
+    } catch (err) {
+      this.fail({
+        status: err.status,
+        code: err.code,
+        msg: err.message,
+      });
+    }
+  }
+
+  async update() {
+    const { params, request, service, HttpError, app } = this.ctx;
+    const body = request.body;
+    const { userId } = request;
+
+    const updatedParams = {};
+    Reflect.has(body, 'name') && (updatedParams.name = body.name);
+    Reflect.has(body, 'phone') && (updatedParams.phone = body.phone);
+    if (Reflect.has(body, 'password')) {
+      const info = await this.service.user.findById(userId);
+      // 如果管理自己操作，需要校验密码
+      console.log(userId, params.id);
+      if (userId === params.id) {
+        if (!Reflect.has(body, 'newPassword')) throw new HttpError(app.config.errorCode.MISS_PARAMS, '请输入需要新密码');
+        if (info.password !== body.password) throw new HttpError('原始密码错误');
+        updatedParams.password = body.newPassword;
+      }
+    }
+
+    try {
+      const info = await service.user.updateOneById({
+        ...{ _id: params.id },
+        ...updatedParams,
+      });
+      this.success({
+        data: {
+          _id: info._id,
+          name: info.name,
+          phone: info.phone,
+        },
       });
     } catch (err) {
       this.fail({
@@ -34,7 +74,11 @@ class UserController extends HttpController {
     try {
       const info = await this.service.user.findById(userId);
       this.success({
-        data: info,
+        data: {
+          _id: info._id,
+          name: info.name,
+          phone: info.phone,
+        },
       });
     } catch (err) {
       this.fail({

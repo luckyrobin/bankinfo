@@ -9,10 +9,10 @@ module.exports = () => {
       const verify = ctx.jwtToken.check(token);
       ctx.request.userId = verify.uid;
       await next();
-    } catch (e) {
+    } catch (err) {
       ctx.body = {
-        code: e.code,
-        msg: e.message || '[AUTH] ERROR',
+        code: err.code,
+        msg: err.message || '[AUTH] ERROR',
       };
     }
   };

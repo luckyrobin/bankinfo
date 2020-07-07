@@ -1,4 +1,5 @@
-import { queryCurrent, query as queryUsers } from '@/services/user';
+import { message } from 'antd';
+import { queryCurrent, query as queryUsers, updateUser } from '@/services/user';
 
 const UserModel = {
   namespace: 'user',
@@ -20,6 +21,21 @@ const UserModel = {
         type: 'saveCurrentUser',
         payload: response,
       });
+    },
+
+    *fetchUpdateMine({ payload }, { call, put }) {
+      const response = yield call(updateUser, payload);
+      if (response && Reflect.has(response, '_id')) {
+        message.success('修改成功');
+        yield put({
+          type: 'saveCurrentUser',
+          payload: response,
+        });
+      }
+    },
+
+    *fetchUpdateUser({ payload }, { call, put }) {
+      const response = yield call(updateUser, payload);
     },
   },
   reducers: {

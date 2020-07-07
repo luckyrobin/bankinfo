@@ -10,7 +10,7 @@ module.exports = app => {
 
   router.get('/api/currentUser', middleware.apiauth(), controller.user.currentUser);
 
-  router.resources('/api/user', controller.user);
+  router.resources('/api/user', middleware.apiauth(), middleware.adminauth(), controller.user);
 
   router.get('*', controller.home.index);
 };

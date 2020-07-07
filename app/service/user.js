@@ -13,6 +13,11 @@ class UserService extends Service {
     return await userDocument.save();
   }
 
+  async updateOneById(params) {
+    const { _id, ...otherParams } = params;
+    return await this.ctx.model.User.findOneAndUpdate({ _id }, { ...otherParams }, { new: true });
+  }
+
   async findByPhone(phone) {
     return await this.ctx.model.User.findOne({ phone });
   }
