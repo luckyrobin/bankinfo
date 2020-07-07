@@ -1,16 +1,17 @@
 import { message } from 'antd';
-import { queryCurrent, query as queryUsers, updateUser } from '@/services/user';
+import { queryCurrent, query as queryUsers, updateUser, createUser, deleteUser } from '@/services/user';
 
 const UserModel = {
   namespace: 'user',
   state: {
     currentUser: {},
+    memberList: [],
   },
   effects: {
     *fetch(_, { call, put }) {
       const response = yield call(queryUsers);
       yield put({
-        type: 'save',
+        type: 'saveMembers',
         payload: response,
       });
     },
@@ -34,13 +35,34 @@ const UserModel = {
       }
     },
 
-    *fetchUpdateUser({ payload }, { call, put }) {
-      const response = yield call(updateUser, payload);
+    *fetchCreate({ payload }, { call, put }) {
+      yield call(createUser, payload);
+      yield put({
+        type: 'fetch',
+      })
+    },
+
+    *fetchUpdate({ payload }, { call, put }) {
+      yield call(updateUser, payload);
+      yield put({
+        type: 'fetch',
+      })
+    },
+
+    *fetchDelete({ payload }, { call, put }) {
+      yield call(deleteUser, payload);
+      yield put({
+        type: 'fetch',
+      })
     },
   },
   reducers: {
     saveCurrentUser(state, action) {
       return { ...state, currentUser: action.payload || {} };
+    },
+
+    saveMembers(state, action) {
+      return { ...state, memberList: action.payload || [] };
     },
 
     changeNotifyCount(

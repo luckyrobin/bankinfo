@@ -30,18 +30,25 @@ export default [
             component: './Welcome',
           },
           {
+            path: '/member',
+            name: '成员管理',
+            icon: 'ContactsOutlined',
+            component: './Member',
+            authority: ['admin'],
+          },
+          {
             path: '/account',
             name: '账号管理',
             icon: 'crown',
             component: './Account',
             authority: ['admin'],
           },
-          // {
-          //   name: 'list.table-list',
-          //   icon: 'table',
-          //   path: '/list',
-          //   component: './ListTableList',
-          // },
+          {
+            name: 'list.table-list',
+            icon: 'table',
+            path: '/list',
+            component: './ListTableList',
+          },
           {
             component: './404',
           },

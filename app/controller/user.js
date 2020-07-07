@@ -26,6 +26,22 @@ class UserController extends HttpController {
     }
   }
 
+  async index() {
+    const { service } = this.ctx;
+    try {
+      const resp = await service.user.findMembers();
+      this.success({
+        data: resp,
+      });
+    } catch (err) {
+      this.fail({
+        status: err.status,
+        code: err.code,
+        msg: err.message,
+      });
+    }
+  }
+
   async update() {
     const { params, request, service, HttpError, app } = this.ctx;
     const body = request.body;
@@ -37,11 +53,12 @@ class UserController extends HttpController {
     if (Reflect.has(body, 'password')) {
       const info = await this.service.user.findById(userId);
       // 如果管理自己操作，需要校验密码
-      console.log(userId, params.id);
       if (userId === params.id) {
         if (!Reflect.has(body, 'newPassword')) throw new HttpError(app.config.errorCode.MISS_PARAMS, '请输入需要新密码');
         if (info.password !== body.password) throw new HttpError('原始密码错误');
         updatedParams.password = body.newPassword;
+      } else {
+        updatedParams.password = body.password;
       }
     }
 
@@ -66,7 +83,23 @@ class UserController extends HttpController {
     }
   }
 
-  async delete() {}
+  async destroy() {
+    const { params, service } = this.ctx;
+    try {
+      const resp = await service.user.delete(params.id);
+      this.success({
+        data: {
+          _id: resp._id,
+        },
+      });
+    } catch (err) {
+      this.fail({
+        status: err.status,
+        code: err.code,
+        msg: err.message,
+      });
+    }
+  }
 
   async currentUser() {
     const { request } = this.ctx;

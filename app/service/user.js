@@ -25,6 +25,14 @@ class UserService extends Service {
   async findById(_id) {
     return await this.ctx.model.User.findOne({ _id });
   }
+
+  async delete(id) {
+    return await this.ctx.model.User.findByIdAndDelete(id);
+  }
+
+  async findMembers() {
+    return await this.ctx.model.User.find({ auth: 'user' }, { name: 1, phone: 1, password: 1 });
+  }
 }
 
 module.exports = UserService;
