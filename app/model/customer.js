@@ -150,13 +150,14 @@ module.exports = app => {
         type: Number,
       },
       customer_loans_mortgage: {
-        type: String,
+        type: Number,
       },
       customer_loans_limit: {
         type: String,
       },
       customer_loans_method: {
         type: String,
+        enum: [ '1', '2' ], // 1: 等额本息  2: 等额本金
       },
       loans_lrp: {
         type: Number,
@@ -167,10 +168,7 @@ module.exports = app => {
       loans_interest_extrarate: {
         type: Number,
       },
-      loans_equality_rate: {
-        type: Number,
-      },
-      loans_equality_sum: {
+      loans_month_sum: {
         type: Number,
       },
       // company
@@ -182,6 +180,20 @@ module.exports = app => {
       },
       company_area: {
         type: String,
+      },
+      // fund
+      fund_lines: {
+        type: Number,
+      },
+      fund_method: {
+        type: String,
+        enum: [ '1', '2' ], // 1: 等额本息  2: 等额本金
+      },
+      fund_limit: {
+        type: Number,
+      },
+      fund_month_sum: {
+        type: Number,
       },
       creator: {
         type: mongoose.Schema.Types.ObjectId,

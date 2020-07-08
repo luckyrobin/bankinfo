@@ -17,6 +17,7 @@ import guarantorSpouseSchema from './schema/guarantor_spouse';
 import houseSchema from './schema/house';
 import loansSchema from './schema/loans';
 import companySchema from './schema/company';
+import fundSchema from './schema/fund';
 
 setValidationLanguage('zh');
 const { onFieldValueChange$ } = FormEffectHooks;
@@ -30,12 +31,13 @@ const schema = {
     ...guarantorSpouseSchema,
     ...houseSchema,
     ...loansSchema,
+    ...fundSchema,
     ...companySchema,
   },
 };
 
 const CurdForm = (props) => {
-  const { onCancel, visible, onSubmit, initialValues } = props;
+  const { onCancel, visible, onSubmit, value } = props;
   const useMarriedEffects = () => {
     const { setFieldState } = createFormActions();
     onFieldValueChange$('customer_married').subscribe(({ value }) => {
@@ -54,7 +56,7 @@ const CurdForm = (props) => {
       <SchemaForm
         components={{ FormCard, FormMegaLayout, Input, Select, NumberPicker }}
         schema={schema}
-        initialValues={initialValues}
+        value={value}
         effects={() => {
           useMarriedEffects();
         }}

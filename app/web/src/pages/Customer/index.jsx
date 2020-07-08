@@ -11,6 +11,7 @@ import CurdForm from './components/CurdForm';
 function Customer(props) {
   const { dispatch, customerList, loading } = props;
   const [visible, setVisible] = useState(false);
+  const [curEditInfo, setCurEditInfo] = useState({});
 
   useEffect(() => {
     dispatch({
@@ -19,19 +20,35 @@ function Customer(props) {
   }, []);
 
   const handleAdd = () => {
+    setCurEditInfo({});
     setVisible(true);
   };
 
-  const handleEdit = () => {};
+  const handleEdit = (record) => {
+    setCurEditInfo(record);
+    setVisible(true);
+  };
 
-  const handleDelete = () => {};
+  const handleDelete = (_id) => {
+    dispatch({
+      type: 'customer/fetchDestroyCustomer',
+      payload: { _id },
+    });
+  };
 
   const handleSubmit = (values) => {
-    debugger
-    dispatch({
-      type: 'customer/fetchCreateCustomer',
-      payload: { ...values },
-    });
+    if (Reflect.has(values, '_id')) {
+      dispatch({
+        type: 'customer/fetchUpdateCustomer',
+        payload: { ...values },
+      });
+    } else {
+      dispatch({
+        type: 'customer/fetchCreateCustomer',
+        payload: { ...values },
+      });
+    }
+    setVisible(false);
   };
 
   const columns = [
@@ -47,13 +64,13 @@ function Customer(props) {
       title: '信息入库时间',
       dataIndex: 'create_time',
       sorter: true,
-      render: _ => moment().format('lll'),
+      render: _ => moment(_).format('lll'),
     },
     {
       title: '最近修改时间',
       dataIndex: 'update_time',
       sorter: true,
-      render: _ => moment().format('lll'),
+      render: _ => moment(_).format('lll'),
     },
     {
       title: '最近操作人',
@@ -74,7 +91,7 @@ function Customer(props) {
             <Popconfirm
               title="确认删除?"
               onConfirm={() => {
-                handleDelete(record);
+                handleDelete(record._id);
               }}
             >
               <Button danger style={{ marginRight: 8 }}>
@@ -87,7 +104,7 @@ function Customer(props) {
       },
     },
   ];
-  console.log(customerList);
+
   return (
     <PageHeaderWrapper>
       <ProTable
@@ -103,7 +120,7 @@ function Customer(props) {
         scroll={{ x: 1300 }}
       />
       <CurdForm
-        initialValues={{}}
+        value={curEditInfo}
         visible={visible}
         onCancel={() => {
           setVisible(false);

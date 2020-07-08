@@ -37,9 +37,9 @@ export default {
             },
           },
           "customer_loans_mortgage": {
-            "type": "string",
-            "title": "抵押率",
-            "x-component": "Input",
+            "type": "number",
+            "title": "抵押率（%）",
+            "x-component": "NumberPicker",
           },
           "customer_loans_limit": {
             "type": "string",
@@ -49,16 +49,21 @@ export default {
           "customer_loans_method": {
             "type": "string",
             "title": "还款方式",
-            "x-component": "Input",
+            "x-component": "Select",
+            "enum": [
+              {
+                "label": "等额本息",
+                "value": "1"
+              },
+              {
+                "label": "等额本金",
+                "value": "2"
+              }
+            ],
           },
           "loans_lrp": {
             "type": "number",
             "title": "5 年人行LPR(%)",
-            "x-component": "NumberPicker",
-          },
-          "loans_interest_rate": {
-            "type": "number",
-            "title": "贷款利率(%)",
             "x-component": "NumberPicker",
           },
           "loans_interest_extrarate": {
@@ -66,14 +71,14 @@ export default {
             "title": "利率LPR +点",
             "x-component": "NumberPicker",
           },
-          "loans_equality_rate": {
+          "loans_interest_rate": {
             "type": "number",
-            "title": "等额本息",
+            "title": "贷款利率(%)",
             "x-component": "NumberPicker",
           },
-          "loans_equality_sum": {
+          "loans_month_sum": {
             "type": "number",
-            "title": "等额本金",
+            "title": "月还款额",
             "x-component": "NumberPicker",
           },
         },

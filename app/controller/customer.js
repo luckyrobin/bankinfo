@@ -50,12 +50,13 @@ class CustomerController extends HttpController {
     const body = request.body;
     const { userId } = request;
 
-    const updatedParams = {
-      ...body,
-      ...{
-        operator: userId,
-      },
-    };
+    const updatedParams = { ...body };
+    Reflect.deleteProperty(updatedParams, 'create_time');
+    Reflect.deleteProperty(updatedParams, 'update_time');
+    Reflect.deleteProperty(updatedParams, '__v');
+    Reflect.deleteProperty(updatedParams, 'operator');
+    Reflect.deleteProperty(updatedParams, 'creator');
+    updatedParams.operator = userId;
 
     try {
       const info = await service.customer.updateOneById({
