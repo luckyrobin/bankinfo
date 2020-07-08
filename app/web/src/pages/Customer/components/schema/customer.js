@@ -1,0 +1,154 @@
+export default {
+  "NO_NAME_FIELD_$0": {
+    "type": "object",
+    "x-component": "Card",
+    "x-component-props": {
+      "title": "借款人",
+      "style": {}
+    },
+    "properties": {
+      "NO_NAME_FIELD_$01": {
+        "type": "object",
+        "x-component": "mega-layout",
+        "x-component-props": {
+          "inset": true,
+          "autoRow": true,
+          "grid": true,
+          "columns": 4,
+          "full": true
+        },
+        "properties": {
+          "customer_name": {
+            "type": "string",
+            "title": "姓名",
+            "x-component": "Input",
+            "required": true,
+          },
+          "customer_sex": {
+            "type": "string",
+            "title": "性别",
+            "x-component": "Select",
+            "required": true,
+            "enum": [
+              {
+                "label": "男",
+                "value": "male"
+              },
+              {
+                "label": "女",
+                "value": "female"
+              }
+            ],
+          },
+          "customer_id": {
+            "type": "string",
+            "title": "身份证号码",
+            "x-component": "Input",
+            "x-mega-props": {
+              "span": 2
+            },
+            "required": true
+          },
+          "customer_married": {
+            "type": "string",
+            "title": "婚姻状况",
+            "x-component": "Select",
+            "required": true,
+            "enum": [
+              {
+                "label": "未婚",
+                "value": "1"
+              },
+              {
+                "label": "已婚",
+                "value": "2"
+              },
+              {
+                "label": "离婚",
+                "value": "3"
+              }
+            ],
+          },
+          "customer_register_address": {
+            "type": "string",
+            "title": "户籍地址",
+            "x-component": "Input",
+          },
+          "customer_work_unit": {
+            "type": "string",
+            "title": "工作单位",
+            "x-component": "Input",
+          },
+          "customer_jobs": {
+            "type": "string",
+            "title": "职务",
+            "x-component": "Input",
+          },
+          "customer_salary": {
+            "type": "number",
+            "title": "税前月收入（元）",
+            "x-component": "NumberPicker",
+            "x-component-props": {
+              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+            },
+          },
+          "customer_loans": {
+            "type": "number",
+            "title": "贷款金额（万元）",
+            "x-component": "NumberPicker",
+            "x-component-props": {
+              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+            },
+          },
+          "customer_house_place": {
+            "type": "string",
+            "title": "贷款房产位置",
+            "x-component": "Input",
+            "x-mega-props": {
+              "span": 2
+            },
+          },
+          "customer_house_area": {
+            "type": "number",
+            "title": "建筑面积（m²）",
+            "x-component": "NumberPicker",
+          },
+          "customer_house_area_share": {
+            "type": "number",
+            "title": "土地分摊面积（m²）",
+            "x-component": "NumberPicker",
+          },
+          "customer_phone": {
+            "type": "string",
+            "title": "借款人联系电话",
+            "x-component": "Input",
+            "required": true,
+          },
+          "customer_work_phone": {
+            "type": "string",
+            "title": "单位电话",
+            "x-component": "Input",
+          },
+          "customer_work_place": {
+            "type": "string",
+            "title": "单位地址",
+            "x-component": "Input",
+            "x-mega-props": {
+              "span": 2
+            },
+          },
+          "customer_home_place": {
+            "type": "string",
+            "title": "家庭地址",
+            "x-component": "Input",
+            "x-mega-props": {
+              "span": 2
+            },
+          },
+        }
+      }
+    },
+  },
+};

@@ -42,6 +42,7 @@
     "@ant-design/pro-layout": "^5.0.16",
     "@ant-design/pro-table": "2.3.4",
     "@formily/antd": "^1.2.4",
+    "@formily/antd-components": "^1.2.4",
     "antd": "4.3.3",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",

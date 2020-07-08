@@ -30,6 +30,13 @@ export default [
             component: './Welcome',
           },
           {
+            path: '/customer',
+            name: '客户管理',
+            icon: 'TeamOutlined',
+            component: './Customer',
+            authority: ['admin', 'user'],
+          },
+          {
             path: '/member',
             name: '成员管理',
             icon: 'ContactsOutlined',

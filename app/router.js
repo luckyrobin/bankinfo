@@ -12,5 +12,7 @@ module.exports = app => {
 
   router.resources('/api/user', middleware.apiauth(), middleware.adminauth(), controller.user);
 
+  router.resources('/api/customer', middleware.apiauth(), controller.customer);
+
   router.get('*', controller.home.index);
 };
