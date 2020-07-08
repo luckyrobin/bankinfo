@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Input, Table, Popconfirm, Form, Button, message } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { connect } from 'umi';
 
 const EditableCell = ({
@@ -40,6 +41,7 @@ function Member(props) {
   const [ form ] = Form.useForm();
   const [ data, setData ] = useState(memberList);
   const [ editingKey, setEditingKey ] = useState('');
+  const [ showpwKey, setShowpwKey ] = useState([]);
 
   useEffect(() => {
     dispatch({
@@ -69,6 +71,15 @@ function Member(props) {
       dataIndex: 'password',
       width: '25%',
       editable: true,
+      render: (_, record) => {
+        const hasKey = showpwKey.includes(record._id);
+        return (
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{ flex: 1 }}>{hasKey ? _ : "******"}</span>
+            <span style={{ fontSize: '22px', cursor: 'pointer' }} onClick={() => { handleShowpw(record._id, hasKey) }}>{hasKey ? <EyeInvisibleOutlined /> : <EyeOutlined />}</span>
+          </div>
+        );
+      },
     },
     {
       title: '操作',
@@ -106,6 +117,14 @@ function Member(props) {
   ];
 
   const isEditing = record => record._id === editingKey;
+
+  const handleShowpw = (_id, hasKey) => {
+    if (hasKey) {
+      setShowpwKey(c => c.filter(item => item !== _id));
+    } else {
+      setShowpwKey(c => c.concat(_id));
+    }
+  }
 
   const handleEdit = record => {
     form.setFieldsValue({
