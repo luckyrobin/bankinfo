@@ -9,13 +9,16 @@ import moment from 'moment';
 import CurdForm from './components/CurdForm';
 
 function Customer(props) {
-  const { dispatch, customerList, loading } = props;
+  const { dispatch, customerList, constantList, loading } = props;
   const [visible, setVisible] = useState(false);
   const [curEditInfo, setCurEditInfo] = useState({});
 
   const reload = () => {
     dispatch({
       type: 'customer/fetch',
+    });
+    dispatch({
+      type: 'constant/fetch',
     });
   }
 
@@ -120,6 +123,7 @@ function Customer(props) {
       },
     },
   ];
+
   return (
     <PageHeaderWrapper>
       <ProTable
@@ -135,7 +139,7 @@ function Customer(props) {
         ]}
       />
       <CurdForm
-        value={curEditInfo}
+        value={{ ...constantList, ...curEditInfo }}
         visible={visible}
         loading={loading}
         onCancel={() => {
@@ -149,7 +153,8 @@ function Customer(props) {
   );
 }
 
-export default connect(({ customer, loading }) => ({
+export default connect(({ customer, constant, loading }) => ({
   customerList: customer.customerList,
+  constantList: constant.constantList,
   loading: loading.effects['customer/fetch'],
 }))(Customer);
