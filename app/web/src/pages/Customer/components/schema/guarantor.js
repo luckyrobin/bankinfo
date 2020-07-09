@@ -64,7 +64,7 @@ export default {
                 "value": "2"
               },
               {
-                "label": "离婚",
+                "label": "离异",
                 "value": "3"
               }
             ],

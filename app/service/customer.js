@@ -25,7 +25,7 @@ class CustomerService extends Service {
   }
 
   async findAll() {
-    return await this.ctx.model.Customer.find();
+    return await this.ctx.model.Customer.find().sort('-update_time');
   }
 
 }

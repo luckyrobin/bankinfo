@@ -13,10 +13,14 @@ function Customer(props) {
   const [visible, setVisible] = useState(false);
   const [curEditInfo, setCurEditInfo] = useState({});
 
-  useEffect(() => {
+  const reload = () => {
     dispatch({
       type: 'customer/fetch',
     });
+  }
+
+  useEffect(() => {
+    reload();
   }, []);
 
   const handleAdd = () => {
@@ -63,18 +67,21 @@ function Customer(props) {
     {
       title: '信息入库时间',
       dataIndex: 'create_time',
-      sorter: true,
+      sorter: (a, b) => Date.parse(a.create_time) - Date.parse(b.create_time),
+      hideInSearch: true,
       render: _ => moment(_).format('lll'),
     },
     {
       title: '最近修改时间',
       dataIndex: 'update_time',
-      sorter: true,
+      sorter: (a, b) => Date.parse(a.update_time) - Date.parse(b.update_time),
+      hideInSearch: true,
       render: _ => moment(_).format('lll'),
     },
     {
       title: '最近操作人',
       dataIndex: 'operator',
+      hideInSearch: true,
       render: _ => _.name,
     },
     {
@@ -104,7 +111,6 @@ function Customer(props) {
       },
     },
   ];
-
   return (
     <PageHeaderWrapper>
       <ProTable
@@ -112,6 +118,7 @@ function Customer(props) {
         loading={loading}
         columns={columns}
         dataSource={customerList}
+        options={{density: true, reload, fullScreen: true, setting: true, }}
         toolBarRender={() => [
           <Button type="primary" onClick={handleAdd}>
             <PlusOutlined /> 新建
@@ -135,5 +142,5 @@ function Customer(props) {
 
 export default connect(({ customer, loading }) => ({
   customerList: customer.customerList,
-  loading: loading.effects['customer/fetch', 'customer/fetchCreateCustomer', 'customer/fetchUpdateCustomer', 'customer/fetchDestroyCustomer'],
+  loading: loading.effects['customer/fetch'],
 }))(Customer);
