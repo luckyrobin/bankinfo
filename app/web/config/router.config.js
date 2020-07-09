@@ -37,6 +37,13 @@ export default [
             authority: ['admin', 'user'],
           },
           {
+            path: '/constant',
+            name: '常量管理',
+            icon: 'CopyrightCircleOutlined',
+            component: './Constant',
+            authority: ['admin'],
+          },
+          {
             path: '/member',
             name: '成员管理',
             icon: 'ContactsOutlined',

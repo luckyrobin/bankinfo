@@ -233,5 +233,5 @@ function Member(props) {
 
 export default connect(({ user, loading }) => ({
   memberList: user.memberList,
-  loading: loading.effects['user/fetch', 'user/fetchCreate', 'user/fetchUpdate', 'user/fetchDelete'],
+  loading: loading.effects['user/fetch'],
 }))(Member);

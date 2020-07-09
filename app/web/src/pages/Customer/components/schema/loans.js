@@ -40,6 +40,10 @@ export default {
             "type": "number",
             "title": "抵押率（%）",
             "x-component": "NumberPicker",
+            "x-component-props": {
+              formatter: value => `${value}%`,
+              parser: value => value.replace('%', '')
+            },
           },
           "customer_loans_limit": {
             "type": "string",
@@ -65,6 +69,10 @@ export default {
             "type": "number",
             "title": "5 年人行LPR(%)",
             "x-component": "NumberPicker",
+            "x-component-props": {
+              formatter: value => `${value}%`,
+              parser: value => value.replace('%', '')
+            },
           },
           "loans_interest_extrarate": {
             "type": "number",
@@ -75,6 +83,10 @@ export default {
             "type": "number",
             "title": "贷款利率(%)",
             "x-component": "NumberPicker",
+            "x-component-props": {
+              formatter: value => `${value}%`,
+              parser: value => value.replace('%', '')
+            },
           },
           "loans_month_sum": {
             "type": "number",
