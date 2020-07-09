@@ -37,6 +37,13 @@ export default [
             authority: ['admin', 'user'],
           },
           {
+            path: '/template',
+            name: '模板管理',
+            icon: 'FileWordOutlined',
+            component: './Template',
+            authority: ['admin'],
+          },
+          {
             path: '/constant',
             name: '常量管理',
             icon: 'CopyrightCircleOutlined',

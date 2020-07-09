@@ -22,6 +22,10 @@ module.exports = appInfo => {
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+    multipart: {
+      mode: 'file',
+      whitelist: [ '.doc', '.docx' ],
+    },
     view: {
       root: path.join(appInfo.baseDir, 'app/view'),
       mapping: {

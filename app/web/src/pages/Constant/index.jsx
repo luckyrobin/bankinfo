@@ -52,13 +52,13 @@ function Constant(props) {
   const useSomeEffects = () => {
     const { setFieldState } = createFormActions();
     onFieldValueChange$('const_list.*.const_name').subscribe(({ name, value }) => {
-      const { type } = constEnum.find(item => item.value === value);
       setFieldState(
         FormPath.transform(name, /\d/, $1 => {
           return `const_list.${$1}.const_value`
         }),
         state => {
-          state.props['x-component'] = (type === 'number') ? "NumberPicker" : "Input"
+          const findIt = constEnum.find(item => item.value === value);
+          state.props['x-component'] = (findIt.type === 'number') ? "NumberPicker" : "Input"
         }
       )
     })
