@@ -6,6 +6,8 @@ module.exports = app => {
     {
       customer_name: {
         type: String,
+        index: true,
+        background: true,
         required: true,
       },
       customer_sex: {
@@ -15,7 +17,7 @@ module.exports = app => {
       },
       customer_id: {
         type: String,
-        unique: true,
+        index: true,
         background: true,
         required: true,
       },

@@ -24,13 +24,13 @@ function Customer(props) {
   }, []);
 
   const handleAdd = () => {
-    setCurEditInfo({});
     setVisible(true);
+    setCurEditInfo({});
   };
 
   const handleEdit = (record) => {
-    setCurEditInfo(record);
     setVisible(true);
+    setCurEditInfo(record);
   };
 
   const handleDelete = (_id) => {
@@ -40,20 +40,29 @@ function Customer(props) {
     });
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async values => {
     if (Reflect.has(values, '_id')) {
-      dispatch({
+      await dispatch({
         type: 'customer/fetchUpdateCustomer',
         payload: { ...values },
       });
     } else {
-      dispatch({
+      await dispatch({
         type: 'customer/fetchCreateCustomer',
         payload: { ...values },
       });
     }
     setVisible(false);
   };
+
+  // const showConfirm = () => {
+  //   confirm({
+  //     title: '您确定要关闭当前编辑的表单吗?',
+  //     icon: <ExclamationCircleOutlined />,
+  //     content: '关闭后填写的信息会丢失',
+  //     onOk() { setVisible(false) },
+  //   });
+  // }
 
   const columns = [
     {
@@ -124,11 +133,11 @@ function Customer(props) {
             <PlusOutlined /> 新建
           </Button>,
         ]}
-        scroll={{ x: 1300 }}
       />
       <CurdForm
         value={curEditInfo}
         visible={visible}
+        loading={loading}
         onCancel={() => {
           setVisible(false);
         }}

@@ -37,7 +37,7 @@ const schema = {
 };
 
 const CurdForm = (props) => {
-  const { onCancel, visible, onSubmit, value } = props;
+  const { onCancel, visible, onSubmit, value, loading } = props;
   const useMarriedEffects = () => {
     const { setFieldState } = createFormActions();
     onFieldValueChange$('customer_married').subscribe(({ value }) => {
@@ -52,7 +52,7 @@ const CurdForm = (props) => {
     });
   };
   return (
-    <Drawer title="客户信息录入" width="80%" visible={visible} onClose={onCancel}>
+    <Drawer key={Math.random()} title="客户信息录入" width="80%" visible={visible} onClose={onCancel}>
       <SchemaForm
         components={{ FormCard, FormMegaLayout, Input, Select, NumberPicker }}
         schema={schema}
@@ -62,10 +62,10 @@ const CurdForm = (props) => {
         }}
       >
         <FormButtonGroup>
-          <Submit onSubmit={onSubmit} style={{ marginRight: 8 }}>
+          <Submit loading={loading} onSubmit={onSubmit} style={{ marginRight: 8 }} size="large">
             保存
           </Submit>
-          <Reset style={{ marginRight: 8 }} />
+          <Reset size="large" />
         </FormButtonGroup>
       </SchemaForm>
     </Drawer>
