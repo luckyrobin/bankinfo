@@ -111,8 +111,10 @@ download.interceptors.response.use(async response => {
   if (response.status !== 200) {
     throw new ResponseError(response);
   }
+  if (response.headers.get('Content-Disposition')) return response;
   const resp = await response.clone().json();
   const { code, msg } = resp;
+  if (!code) return response;
   switch (code) {
     case 0: {
       return response;

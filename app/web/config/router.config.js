@@ -21,13 +21,7 @@ export default [
         routes: [
           {
             path: '/',
-            redirect: '/welcome',
-          },
-          {
-            path: '/welcome',
-            name: '欢迎',
-            icon: 'smile',
-            component: './Welcome',
+            redirect: '/customer',
           },
           {
             path: '/customer',

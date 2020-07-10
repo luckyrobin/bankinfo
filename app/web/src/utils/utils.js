@@ -59,6 +59,7 @@ export const getRouteAuthority = (path, routeData) => {
 };
 
 export function convertResp2Blob(response) {
+  if (!response.data || !response.response) return;
   const fileName = response.response.headers.get('Content-Disposition').match(/filename=["|'](.*)["|']/)[1];
   // create a blob
   const blob = new Blob([response.data], { type: 'application/octet-stream' });
