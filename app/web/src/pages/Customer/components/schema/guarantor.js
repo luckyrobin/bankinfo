@@ -22,13 +22,11 @@ export default {
             "type": "string",
             "title": "姓名",
             "x-component": "Input",
-            "required": true,
           },
           "guarantor_sex": {
             "type": "string",
             "title": "性别",
             "x-component": "Select",
-            "required": true,
             "enum": [
               {
                 "label": "男",
@@ -47,13 +45,11 @@ export default {
             "x-mega-props": {
               "span": 2
             },
-            "required": true
           },
           "guarantor_married": {
             "type": "string",
             "title": "婚姻状况",
             "x-component": "Select",
-            "required": true,
             "enum": [
               {
                 "label": "未婚",

@@ -39,7 +39,7 @@ export default {
               },
               {
                 "label": "等额本金",
-                "value": "等额本息"
+                "value": "等额本金"
               }
             ],
           },

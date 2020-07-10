@@ -23,13 +23,11 @@ export default {
             "type": "string",
             "title": "姓名",
             "x-component": "Input",
-            "required": true,
           },
           "guarantor_spouse_sex": {
             "type": "string",
             "title": "性别",
             "x-component": "Select",
-            "required": true,
             "enum": [
               {
                 "label": "男",
@@ -48,7 +46,6 @@ export default {
             "x-mega-props": {
               "span": 2
             },
-            "required": true
           },
           "guarantor_spouse_register_address": {
             "type": "string",
