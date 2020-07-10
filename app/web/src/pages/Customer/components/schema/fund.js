@@ -28,22 +28,22 @@ export default {
             "title": "期限（年）",
             "x-component": "NumberPicker",
           },
-          "fund_month_sum": {
+          "fund_method": {
             "type": "string",
             "title": "还款方式",
             "x-component": "Select",
             "enum": [
               {
                 "label": "等额本息",
-                "value": "1"
+                "value": "等额本息"
               },
               {
                 "label": "等额本金",
-                "value": "2"
+                "value": "等额本息"
               }
             ],
           },
-          "fund_month": {
+          "fund_month_sum": {
             "type": "number",
             "title": "月还款额",
             "x-component": "NumberPicker",

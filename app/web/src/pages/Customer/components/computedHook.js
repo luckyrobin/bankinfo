@@ -6,12 +6,12 @@ export const useMarriedEffects = () => {
   const { setFieldState, getFieldState } = createFormActions();
   onFieldValueChange$('customer_married').subscribe(({ value }) => {
     setFieldState('*(NO_NAME_FIELD_$1)', (state) => {
-      state.visible = value === '2';
+      state.visible = value === '已婚';
     });
   });
   onFieldValueChange$('guarantor_married').subscribe(({ value }) => {
     setFieldState('*(NO_NAME_FIELD_$3)', (state) => {
-      state.visible = value === '2';
+      state.visible = value === '已婚';
     });
   });
 };

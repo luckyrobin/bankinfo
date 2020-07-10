@@ -32,11 +32,11 @@ export default {
             "enum": [
               {
                 "label": "男",
-                "value": "male"
+                "value": "男"
               },
               {
                 "label": "女",
-                "value": "female"
+                "value": "女"
               }
             ],
           },
@@ -57,15 +57,15 @@ export default {
             "enum": [
               {
                 "label": "未婚",
-                "value": "1"
+                "value": "未婚"
               },
               {
                 "label": "已婚",
-                "value": "2"
+                "value": "已婚"
               },
               {
                 "label": "离异",
-                "value": "3"
+                "value": "离异"
               }
             ],
           },

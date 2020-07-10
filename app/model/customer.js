@@ -13,7 +13,7 @@ module.exports = app => {
       customer_sex: {
         type: String,
         required: true,
-        enum: [ 'male', 'female' ], // male: 男  female: 女
+        enum: [ '男', '女' ], // male: 男  female: 女
       },
       customer_id: {
         type: String,
@@ -24,7 +24,7 @@ module.exports = app => {
       customer_married: {
         type: String,
         required: true,
-        enum: [ '1', '2', '3' ], // 1: 未婚  2: 已婚  3: 离婚
+        enum: [ '未婚', '已婚', '离婚' ], // 1: 未婚  2: 已婚  3: 离婚
       },
       customer_register_address: {
         type: String,
@@ -159,7 +159,7 @@ module.exports = app => {
       },
       customer_loans_method: {
         type: String,
-        enum: [ '1', '2' ], // 1: 等额本息  2: 等额本金
+        enum: [ '等额本息', '等额本金' ], // 1: 等额本息  2: 等额本金
       },
       loans_lrp: {
         type: Number,
@@ -189,7 +189,7 @@ module.exports = app => {
       },
       fund_method: {
         type: String,
-        enum: [ '1', '2' ], // 1: 等额本息  2: 等额本金
+        enum: [ '等额本息', '等额本金' ], // 1: 等额本息  2: 等额本金
       },
       fund_limit: {
         type: Number,

@@ -57,11 +57,11 @@ export default {
             "enum": [
               {
                 "label": "等额本息",
-                "value": "1"
+                "value": "等额本息"
               },
               {
                 "label": "等额本金",
-                "value": "2"
+                "value": "等额本金"
               }
             ],
           },

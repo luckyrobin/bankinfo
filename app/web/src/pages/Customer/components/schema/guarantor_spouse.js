@@ -33,11 +33,11 @@ export default {
             "enum": [
               {
                 "label": "男",
-                "value": "male"
+                "value": "男"
               },
               {
                 "label": "女",
-                "value": "female"
+                "value": "女"
               }
             ],
           },

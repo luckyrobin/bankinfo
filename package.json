@@ -32,7 +32,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-bankinfo",
+    "start": "egg-scripts start --daemon --title=egg-server-bankinfo --port 80",
     "stop": "egg-scripts stop --title=egg-server-bankinfo",
     "dev": "egg-bin dev",
     "build": "APP_ROOT=$PWD/app/web umi build",
