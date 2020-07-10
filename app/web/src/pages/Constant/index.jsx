@@ -58,6 +58,7 @@ function Constant(props) {
         }),
         state => {
           const findIt = constEnum.find(item => item.value === value);
+          if (!findIt) return;
           state.props['x-component'] = (findIt.type === 'number') ? "NumberPicker" : "Input"
         }
       )

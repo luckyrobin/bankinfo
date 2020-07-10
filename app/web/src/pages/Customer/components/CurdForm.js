@@ -6,10 +6,9 @@ import {
   Submit,
   Reset,
   setValidationLanguage,
-  FormEffectHooks,
-  createFormActions,
 } from '@formily/antd';
 import { FormCard, Input, Select, NumberPicker, FormMegaLayout } from '@formily/antd-components';
+
 import customerSchema from './schema/customer';
 import customerSpouseSchema from './schema/customer_spouse';
 import guarantorSchema from './schema/guarantor';
@@ -20,7 +19,7 @@ import companySchema from './schema/company';
 import fundSchema from './schema/fund';
 
 setValidationLanguage('zh');
-const { onFieldValueChange$ } = FormEffectHooks;
+import { useMarriedEffects, useComputedUnitCost, useComputedRate } from './computedHook';
 
 const schema = {
   type: 'object',
@@ -38,19 +37,6 @@ const schema = {
 
 const CurdForm = (props) => {
   const { onCancel, visible, onSubmit, value, loading } = props;
-  const useMarriedEffects = () => {
-    const { setFieldState } = createFormActions();
-    onFieldValueChange$('customer_married').subscribe(({ value }) => {
-      setFieldState('*(NO_NAME_FIELD_$1)', (state) => {
-        state.visible = value === '2';
-      });
-    });
-    onFieldValueChange$('guarantor_married').subscribe(({ value }) => {
-      setFieldState('*(NO_NAME_FIELD_$3)', (state) => {
-        state.visible = value === '2';
-      });
-    });
-  };
   return (
     <Drawer key={Math.random()} title="客户信息录入" width="80%" visible={visible} onClose={onCancel}>
       <SchemaForm
@@ -59,6 +45,8 @@ const CurdForm = (props) => {
         value={value}
         effects={() => {
           useMarriedEffects();
+          useComputedUnitCost();
+          useComputedRate();
         }}
       >
         <FormButtonGroup>
