@@ -20,5 +20,7 @@ module.exports = app => {
 
   router.resources('/api/template', middleware.apiauth(), middleware.adminauth(), controller.template);
 
+  router.put('/api/template/print/:id', middleware.apiauth(), controller.template.print);
+
   router.get('*', controller.home.index);
 };

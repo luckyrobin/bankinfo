@@ -1,4 +1,4 @@
-import { query, destroy } from '@/services/template';
+import { query, destroy, print } from '@/services/template';
 
 const templateModel = {
   namespace: 'template',
@@ -19,6 +19,10 @@ const templateModel = {
       yield put({
         type: 'fetch',
       })
+    },
+
+    *fetchPrintTemplate({ payload }, { call }) {
+      yield call(print, payload);
     },
 
   },

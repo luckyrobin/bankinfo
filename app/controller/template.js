@@ -73,6 +73,24 @@ class TemplateController extends HttpController {
       });
     }
   }
+
+  async print() {
+    const { request, service, params } = this.ctx;
+    const body = request.body;
+
+    try {
+      console.log(params.id, body);
+      this.success({
+        data: {},
+      });
+    } catch (err) {
+      this.fail({
+        status: err.status,
+        code: err.code,
+        msg: err.message,
+      });
+    }
+  }
 }
 
 module.exports = TemplateController;

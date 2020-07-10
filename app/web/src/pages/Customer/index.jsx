@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Popconfirm } from 'antd';
+import { Button, Popconfirm, message } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import { PrinterOutlined, PlusOutlined } from '@ant-design/icons';
@@ -7,11 +7,13 @@ import { connect } from 'umi';
 import moment from 'moment';
 
 import CurdForm from './components/CurdForm';
+import PrintModel from './components/PrintModel';
 
 function Customer(props) {
-  const { dispatch, customerList, constantList, loading } = props;
+  const { dispatch, customerList, constantList, templateList, loading } = props;
   const [visible, setVisible] = useState(false);
   const [curEditInfo, setCurEditInfo] = useState({});
+  const [modalVisible, setModalVisible] = useState(false);
 
   const reload = () => {
     dispatch({
@@ -19,6 +21,9 @@ function Customer(props) {
     });
     dispatch({
       type: 'constant/fetch',
+    });
+    dispatch({
+      type: 'template/fetch',
     });
   }
 
@@ -35,6 +40,11 @@ function Customer(props) {
     setVisible(true);
     setCurEditInfo(record);
   };
+
+  const handlePrint = (record) => {
+    setModalVisible(true);
+    setCurEditInfo(record);
+  }
 
   const handleDelete = (_id) => {
     dispatch({
@@ -58,14 +68,17 @@ function Customer(props) {
     setVisible(false);
   };
 
-  // const showConfirm = () => {
-  //   confirm({
-  //     title: '您确定要关闭当前编辑的表单吗?',
-  //     icon: <ExclamationCircleOutlined />,
-  //     content: '关闭后填写的信息会丢失',
-  //     onOk() { setVisible(false) },
-  //   });
-  // }
+  const handlePrintDoc = async (_id, params) => {
+    if (params.length === 0) {
+      message.warn('请您至少选择一个模板');
+      return;
+    }
+    await dispatch({
+      type: 'template/fetchPrintTemplate',
+      payload: { _id, ...{ templates: params } },
+    });
+    setModalVisible(false);
+  }
 
   const columns = [
     {
@@ -117,7 +130,7 @@ function Customer(props) {
                 删除
               </Button>
             </Popconfirm>
-            <Button icon={<PrinterOutlined />}>打印</Button>
+            <Button icon={<PrinterOutlined />} onClick={() => handlePrint(record)}>打印</Button>
           </span>
         );
       },
@@ -149,12 +162,20 @@ function Customer(props) {
           handleSubmit(values);
         }}
       />
+      <PrintModel
+        templateList={templateList}
+        onCancel={() => setModalVisible(false)}
+        modalVisible={modalVisible}
+        value={{ ...constantList, ...curEditInfo }}
+        onOk={handlePrintDoc}
+      />
     </PageHeaderWrapper>
   );
 }
 
-export default connect(({ customer, constant, loading }) => ({
+export default connect(({ customer, constant, template, loading }) => ({
   customerList: customer.customerList,
   constantList: constant.constantList,
+  templateList: template.templateList,
   loading: loading.effects['customer/fetch'],
 }))(Customer);
