@@ -7,7 +7,7 @@ const PrintModel = props => {
   const [indeterminate, setIndeterminate] = useState(false);
   const [checkAll, setCheckAll] = useState(false);
   
-  const plainOptions = templateList.map(item => item.url);
+  const plainOptions = templateList.map(item => item.name);
 
   const handleCheckAllChange = e => {
     setCheckedList(e.target.checked ? plainOptions : []);
@@ -39,7 +39,7 @@ const PrintModel = props => {
         </Checkbox>
       </p>
       <Checkbox.Group style={{ width: '100%' }} value={checkedList} onChange={handleChange}>
-        {templateList.map(item => <p key={item._id}><Checkbox value={item.url}>{item.name}</Checkbox></p>)}
+        {templateList.map(item => <p key={item._id}><Checkbox value={item.name}>{item.name}</Checkbox></p>)}
       </Checkbox.Group>
     </Modal>
   );

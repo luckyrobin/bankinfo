@@ -57,3 +57,30 @@ export const getRouteAuthority = (path, routeData) => {
   });
   return authorities;
 };
+
+export function convertResp2Blob(response) {
+  const fileName = response.response.headers.get('Content-Disposition').match(/filename=["|'](.*)["|']/)[1];
+  // create a blob
+  const blob = new Blob([response.data], { type: 'application/octet-stream' });
+  if (typeof window.navigator.msSaveBlob !== 'undefined') {
+    // compatibility：support IE，window.navigator.msSaveBlob
+    window.navigator.msSaveBlob(blob, decodeURI(fileName));
+  } else {
+    // create a url for blob
+    const blobURL = window.URL.createObjectURL(blob);
+    // create a temporary link
+    const tempLink = document.createElement('a')
+    tempLink.style.display = 'none'
+    tempLink.href = blobURL
+    tempLink.setAttribute('download', decodeURI(fileName));
+    // compatibility：support download attribute
+    if (typeof tempLink.download === 'undefined') {
+      tempLink.setAttribute('target', '_blank')
+    }
+    document.body.appendChild(tempLink)
+    tempLink.click()
+    document.body.removeChild(tempLink)
+    // release
+    window.URL.revokeObjectURL(blobURL)
+  }
+}

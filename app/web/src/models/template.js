@@ -1,4 +1,5 @@
 import { query, destroy, print } from '@/services/template';
+import { convertResp2Blob } from '@/utils/utils';
 
 const templateModel = {
   namespace: 'template',
@@ -22,7 +23,8 @@ const templateModel = {
     },
 
     *fetchPrintTemplate({ payload }, { call }) {
-      yield call(print, payload);
+      const response = yield call(print, payload);
+      convertResp2Blob(response);
     },
 
   },

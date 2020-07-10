@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import request, { download } from '@/utils/request';
 
 export async function query() {
   return request('/api/template');
@@ -11,7 +11,7 @@ export async function destroy(params) {
 }
 
 export async function print(params) {
-  return request(`/api/template/print/${params._id}`, {
+  return download(`/api/template/print/${params._id}`, {
     method: 'PUT',
     data: params,
   });

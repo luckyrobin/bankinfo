@@ -93,5 +93,39 @@ request.interceptors.response.use(async response => {
       throw new ResponseError(response, msg || codeMessage[code], CUSTOM_RESPONSE);
     }
   }
+}, { global: false });
+
+const download = extend({
+  errorHandler,
+  // 默认错误处理
+  credentials: 'include', // 默认请求是否带上cookie
+  responseType: 'blob',
+  getResponse: true,
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Accept': 'application/json',
+  },
 });
+
+download.interceptors.response.use(async response => {
+  if (response.status !== 200) {
+    throw new ResponseError(response);
+  }
+  const resp = await response.clone().json();
+  const { code, msg } = resp;
+  switch (code) {
+    case 0: {
+      return response;
+    }
+    case 401: {
+      throw new ResponseError(response, '未登录或者登录过期，请重新登录', CUSTOM_RESPONSE);
+    }
+    default: {
+      throw new ResponseError(response, msg || codeMessage[code], CUSTOM_RESPONSE);
+    }
+  }
+},  { global: false });
+
+export { download };
+
 export default request;
