@@ -60,7 +60,8 @@ export const getRouteAuthority = (path, routeData) => {
 
 export function convertResp2Blob(response) {
   if (!response.data || !response.response) return;
-  const fileName = response.response.headers.get('Content-Disposition').match(/filename=["|'](.*)["|']/)[1];
+  const matchFileName = response.response.headers.get('Content-Disposition').match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1];
+  const fileName = matchFileName.replace(/^"{1}|"{1}$/g, '');
   // create a blob
   const blob = new Blob([response.data], { type: 'application/octet-stream' });
   if (typeof window.navigator.msSaveBlob !== 'undefined') {

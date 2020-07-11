@@ -116,7 +116,7 @@ class TemplateController extends HttpController {
       }));
 
       const nodeStream = await zip.generateNodeStream({ streamFiles: true });
-      this.download(`${info.customer_id}.zip`, nodeStream);
+      this.download(`${info.customer_name}.zip`, nodeStream);
     } catch (err) {
       this.fail({
         status: err.status,
@@ -127,7 +127,7 @@ class TemplateController extends HttpController {
   }
 
   async download(filename, stream) {
-    this.ctx.attachment(filename);
+    this.ctx.attachment(encodeURIComponent(filename));
     this.ctx.set('Content-Type', 'application/octet-stream');
     this.ctx.body = stream;
   }
