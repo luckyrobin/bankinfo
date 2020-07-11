@@ -60,7 +60,7 @@ module.exports = appInfo => {
     jwt: {
       secret: config.keys,
       options: {
-        expiresIn: 60 * 60 * 5, // Access Token 过期时间
+        expiresIn: 60 * 60 * 12, // Access Token 过期时间
       },
     },
   };

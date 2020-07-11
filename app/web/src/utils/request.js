@@ -4,8 +4,20 @@
  */
 import { extend, ResponseError } from 'umi-request';
 import { notification } from 'antd';
+import { stringify } from 'querystring';
 
 const CUSTOM_RESPONSE = 'custom_response';
+const CUSTOM_401 = 'custom_401';
+
+const redirect2Login = () => {
+  const queryString = stringify({
+    redirect: window.location.href,
+  });
+
+  if (window.location.pathname !== '/user/login') {
+    window.location.href = (`/user/login?${queryString}`);
+  }
+};
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -35,6 +47,17 @@ const errorHandler = error => {
       message: '请求错误',
       description: error.message,
     });
+    return response;
+  }
+
+  if (data === CUSTOM_401) {
+    notification.error({
+      message: '请求错误',
+      description: error.message,
+    });
+    setTimeout(() => {
+      redirect2Login();
+    }, 3000);
     return response;
   }
 
@@ -87,7 +110,7 @@ request.interceptors.response.use(async response => {
       return resp.data;
     }
     case 401: {
-      throw new ResponseError(response, '未登录或者登录过期，请重新登录', CUSTOM_RESPONSE);
+      throw new ResponseError(response, '未登录或者登录过期，请重新登录', CUSTOM_401);
     }
     default: {
       throw new ResponseError(response, msg || codeMessage[code], CUSTOM_RESPONSE);
@@ -120,7 +143,7 @@ download.interceptors.response.use(async response => {
       return response;
     }
     case 401: {
-      throw new ResponseError(response, '未登录或者登录过期，请重新登录', CUSTOM_RESPONSE);
+      throw new ResponseError(response, '未登录或者登录过期，请重新登录', CUSTOM_401);
     }
     default: {
       throw new ResponseError(response, msg || codeMessage[code], CUSTOM_RESPONSE);

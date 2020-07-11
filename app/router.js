@@ -18,7 +18,7 @@ module.exports = app => {
 
   router.post('/api/constant', middleware.apiauth(), middleware.adminauth(), controller.constant.create);
 
-  router.resources('/api/template', middleware.apiauth(), middleware.adminauth(), controller.template);
+  router.resources('/api/template', middleware.apiauth(), controller.template);
 
   router.put('/api/template/print/:id', middleware.apiauth(), controller.template.print);
 
