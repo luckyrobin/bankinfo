@@ -19,7 +19,7 @@ import companySchema from './schema/company';
 import fundSchema from './schema/fund';
 
 setValidationLanguage('zh');
-import { useMarriedEffects, useComputedUnitCost, useComputedRate, useComputedSum, useComputedFundSum, useComputedTotalSalary } from './computedHook';
+import { useBirthdayEffects, useMarriedEffects, useComputedUnitCost, useComputedRate, useComputedSum, useComputedFundSum, useComputedTotalSalary } from './computedHook';
 
 const schema = {
   type: 'object',
@@ -44,6 +44,7 @@ const CurdForm = (props) => {
         schema={schema}
         value={value}
         effects={() => {
+          useBirthdayEffects();
           useMarriedEffects();
           useComputedUnitCost();
           useComputedRate();

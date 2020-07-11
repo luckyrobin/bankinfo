@@ -1,6 +1,34 @@
 import { FormEffectHooks, createFormActions } from '@formily/antd';
+import { getBirthday } from '@/utils/utils';
 
 const { onFieldValueChange$ } = FormEffectHooks;
+
+export const useBirthdayEffects = () => {
+  const { setFieldState } = createFormActions();
+  onFieldValueChange$('customer_id').subscribe(({ value }) => {
+    setFieldState('customer_birthday', (state) => {
+      state.value = getBirthday(value);
+    });
+  });
+
+  onFieldValueChange$('customer_spouse_id').subscribe(({ value }) => {
+    setFieldState('customer_spouse_birthday', (state) => {
+      state.value = getBirthday(value);
+    });
+  });
+
+  onFieldValueChange$('guarantor_id').subscribe(({ value }) => {
+    setFieldState('guarantor_birthday', (state) => {
+      state.value = getBirthday(value);
+    });
+  });
+
+  onFieldValueChange$('guarantor_spouse_id').subscribe(({ value }) => {
+    setFieldState('guarantor_spouse_birthday', (state) => {
+      state.value = getBirthday(value);
+    });
+  });
+};
 
 export const useMarriedEffects = () => {
   const { setFieldState } = createFormActions();

@@ -85,3 +85,21 @@ export function convertResp2Blob(response) {
     window.URL.revokeObjectURL(blobURL)
   }
 }
+
+export function getBirthday(identityCard) {
+  const len = `${identityCard}`.length;
+  let strBirthday = '';
+  if (len === 18) {
+    strBirthday = `${identityCard.substr(6, 4)}年${identityCard.substr(10, 2)}月${identityCard.substr(12, 2)}日`;
+  }
+  if (len === 15) {
+      let birthdayValue = '';
+      birthdayValue = identityCard.charAt(6) + identityCard.charAt(7);
+      if (parseInt(birthdayValue, 10) < 10) {
+          strBirthday = `20${identityCard.substr(6, 2)}年${identityCard.substr(8, 2)}月${identityCard.substr(10, 2)}日`;
+      } else {
+          strBirthday = `19${identityCard.substr(6, 2)}年${identityCard.substr(8, 2)}月${identityCard.substr(10, 2)}日`;
+      }
+  }
+  return strBirthday;
+}
