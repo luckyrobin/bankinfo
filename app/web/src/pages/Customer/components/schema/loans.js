@@ -24,7 +24,7 @@ export default {
             "x-component": "NumberPicker",
             "x-component-props": {
               "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
           "customer_loans_unit": {
@@ -33,7 +33,7 @@ export default {
             "x-component": "NumberPicker",
             "x-component-props": {
               "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
           "customer_loans_mortgage": {
@@ -51,7 +51,7 @@ export default {
             "x-component": "NumberPicker",
             "x-component-props": {
               "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
           "customer_loans_limit": {
@@ -106,9 +106,12 @@ export default {
             "type": "number",
             "title": "借款人家庭月总收入（元）",
             "x-component": "NumberPicker",
+            "x-mega-props": {
+              "span": 2
+            },
             "x-component-props": {
               "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
         },

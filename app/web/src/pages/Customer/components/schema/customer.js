@@ -95,7 +95,7 @@ export default {
             "x-component": "NumberPicker",
             "x-component-props": {
               "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
           "customer_loans": {
@@ -104,7 +104,7 @@ export default {
             "x-component": "NumberPicker",
             "x-component-props": {
               "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
           "customer_house_place": {

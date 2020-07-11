@@ -24,7 +24,7 @@ export default {
             "x-component": "NumberPicker",
             "x-component-props": {
               "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
           "fund_limit": {
