@@ -104,3 +104,8 @@ export function getBirthday(identityCard) {
   }
   return strBirthday;
 }
+
+export function toFixed(number, digits) {
+  const raw = Math.pow(10, digits);
+  return Math.round(number * raw) / raw;
+}

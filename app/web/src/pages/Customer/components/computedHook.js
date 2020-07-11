@@ -1,5 +1,5 @@
 import { FormEffectHooks, createFormActions } from '@formily/antd';
-import { getBirthday } from '@/utils/utils';
+import { getBirthday, toFixed } from '@/utils/utils';
 
 const { onFieldValueChange$ } = FormEffectHooks;
 
@@ -47,7 +47,7 @@ export const useMarriedEffects = () => {
 export const useComputedUnitCost = () => {
   const { setFieldState, getFieldState } = createFormActions();
   const formula = (total, area) => {
-    return (total * 10000 / area).toFixed(2);
+    return toFixed((total * 10000 / area), 2);
   };
 
   onFieldValueChange$('customer_loans_all').subscribe(({ value }) => {
@@ -71,7 +71,7 @@ export const useComputedUnitCost = () => {
 export const useComputedRate = () => {
   const { setFieldState, getFieldState } = createFormActions();
   const formula = (extrarate, loans_lrp) => {
-    return ((extrarate / 100) + loans_lrp).toFixed(3);
+    return toFixed(((extrarate / 100) + loans_lrp), 3);
   };
 
   onFieldValueChange$('loans_interest_extrarate').subscribe(({ value }) => {
@@ -100,11 +100,11 @@ export const useComputedSum = () => {
     const loans_limit = depend2;
     if (type === '等额本息') {
       const result = loans_business * ( (loans_rate / 12 * (Math.pow((1 + loans_rate / 12), loans_limit * 12))) / ((Math.pow((1 + loans_rate / 12), loans_limit * 12)) - 1) );
-      return result.toFixed(2);
+      return toFixed(result, 2);
     }
     if (type === '等额本金') {
       const result =  (loans_business / loans_limit / 12) + (loans_business * loans_rate / 12);
-      return result.toFixed(2);
+      return toFixed(result, 2);
     }
   };
 
@@ -161,11 +161,11 @@ export const useComputedFundSum = () => {
     const loans_limit = depend2;
     if (type === '等额本息') {
       const result = loans_business * ( (loans_rate / 12 * (Math.pow((1 + loans_rate / 12), loans_limit * 12))) / ((Math.pow((1 + loans_rate / 12), loans_limit * 12)) - 1) );
-      return result.toFixed(2);
+      return toFixed(result, 2);
     }
     if (type === '等额本金') {
       const result =  (loans_business / loans_limit / 12) + (loans_business * loans_rate / 12);
-      return result.toFixed(2);
+      return toFixed(result, 2);
     }
   };
 
