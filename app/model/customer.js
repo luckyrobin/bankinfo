@@ -18,6 +18,7 @@ module.exports = app => {
       },
       other: {
         type: String,
+        required: true,
       },
       // customer_sex: {
       //   type: String,

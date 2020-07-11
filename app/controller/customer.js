@@ -13,16 +13,14 @@ class CustomerController extends HttpController {
       customer_name,
       customer_id,
       other: JSON.stringify(other || {}),
+      creator: userId,
+      operator: userId,
     };
 
     try {
       const resp = await service.customer.create({
         // ...body,
         ...createParams,
-        ...{
-          creator: userId,
-          operator: userId,
-        },
       });
 
       this.success({
@@ -41,20 +39,8 @@ class CustomerController extends HttpController {
     const { service } = this.ctx;
     try {
       const resp = await service.customer.findAll();
-      const result = resp.map(item => {
-        const other = JSON.parse(item.other);
-        return {
-          _id: item._id,
-          customer_name: item.customer_name,
-          customer_id: item.customer_id,
-          operator: item.operator,
-          create_time: item.create_time,
-          update_time: item.update_time,
-          ...other,
-        };
-      });
       this.success({
-        data: result,
+        data: resp,
       });
     } catch (err) {
       this.fail({
@@ -70,15 +56,15 @@ class CustomerController extends HttpController {
     const body = request.body;
     const { userId } = request;
 
-    const updatedParams = { ...body };
-    Reflect.deleteProperty(updatedParams, 'create_time');
-    Reflect.deleteProperty(updatedParams, 'update_time');
-    Reflect.deleteProperty(updatedParams, '__v');
-    Reflect.deleteProperty(updatedParams, 'operator');
-    Reflect.deleteProperty(updatedParams, 'creator');
+    Reflect.deleteProperty(body, 'create_time');
+    Reflect.deleteProperty(body, 'update_time');
+    Reflect.deleteProperty(body, 'operator');
+    Reflect.deleteProperty(body, 'creator');
+    Reflect.deleteProperty(body, '__v');
+    Reflect.deleteProperty(body, 'other');
 
-    const { customer_name, customer_id, ...other } = updatedParams;
-    const finalParams = {
+    const { customer_name, customer_id, ...other } = body;
+    const updatedParams = {
       customer_name,
       customer_id,
       other: JSON.stringify(other),
@@ -88,7 +74,7 @@ class CustomerController extends HttpController {
     try {
       const info = await service.customer.updateOneById({
         ...{ _id: params.id },
-        ...finalParams,
+        ...updatedParams,
       });
       this.success({
         data: info,

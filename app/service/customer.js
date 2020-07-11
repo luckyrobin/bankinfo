@@ -17,7 +17,13 @@ class CustomerService extends Service {
   }
 
   async findById(_id) {
-    return await this.ctx.model.Customer.findOne({ _id });
+    const result = await this.ctx.model.Customer.findById(_id, {}, { lean: true });
+    const other = JSON.parse(result.other);
+    Reflect.deleteProperty(result, 'other');
+    return {
+      ...other,
+      ...result,
+    };
   }
 
   async delete(id) {
@@ -25,7 +31,15 @@ class CustomerService extends Service {
   }
 
   async findAll() {
-    return await this.ctx.model.Customer.find().sort('-update_time');
+    const result = await this.ctx.model.Customer.find({}, {}, { lean: true }).sort('-update_time');
+    return result.map(item => {
+      const other = JSON.parse(item.other);
+      Reflect.deleteProperty(item, 'other');
+      return {
+        ...other,
+        ...item,
+      };
+    });
   }
 
 }
