@@ -187,10 +187,46 @@ export const useComputedFundSum = () => {
   });
 };
 
-export const useComputedFundSum = () => {
+export const useComputedTotalSalary = () => {
   const { setFieldState, getFieldState } = createFormActions();
-  const formula = (type, depend1, depend2, depend3) => {
-    
+  const formula = (depend1 = 0, depend2 = 0, depend3 = 0, depend4 = 0) => {
+    return depend1 + depend2 + depend3 + depend4;
   };
+
+  onFieldValueChange$('customer_salary').subscribe(({ value }) => {
+    setFieldState('total_income', state => {
+      const depend1 = getFieldState('customer_spouse_salary', state => state.value);
+      const depend2 = getFieldState('guarantor_salary', state => state.value);
+      const depend3 = getFieldState('guarantor_spouse_salary', state => state.value);
+      state.value = formula(value, depend1, depend2, depend3);
+    })
+  });
+
+  onFieldValueChange$('customer_spouse_salary').subscribe(({ value }) => {
+    setFieldState('total_income', state => {
+      const depend1 = getFieldState('customer_salary', state => state.value);
+      const depend2 = getFieldState('guarantor_salary', state => state.value);
+      const depend3 = getFieldState('guarantor_spouse_salary', state => state.value);
+      state.value = formula(value, depend1, depend2, depend3);
+    })
+  });
+
+  onFieldValueChange$('guarantor_salary').subscribe(({ value }) => {
+    setFieldState('total_income', state => {
+      const depend1 = getFieldState('customer_spouse_salary', state => state.value);
+      const depend2 = getFieldState('customer_salary', state => state.value);
+      const depend3 = getFieldState('guarantor_spouse_salary', state => state.value);
+      state.value = formula(value, depend1, depend2, depend3);
+    })
+  });
+
+  onFieldValueChange$('guarantor_spouse_salary').subscribe(({ value }) => {
+    setFieldState('total_income', state => {
+      const depend1 = getFieldState('customer_spouse_salary', state => state.value);
+      const depend2 = getFieldState('customer_salary', state => state.value);
+      const depend3 = getFieldState('customer_salary', state => state.value);
+      state.value = formula(value, depend1, depend2, depend3);
+    })
+  });
 
 };

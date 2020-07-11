@@ -19,7 +19,7 @@ import companySchema from './schema/company';
 import fundSchema from './schema/fund';
 
 setValidationLanguage('zh');
-import { useMarriedEffects, useComputedUnitCost, useComputedRate, useComputedSum, useComputedFundSum } from './computedHook';
+import { useMarriedEffects, useComputedUnitCost, useComputedRate, useComputedSum, useComputedFundSum, useComputedTotalSalary } from './computedHook';
 
 const schema = {
   type: 'object',
@@ -49,6 +49,7 @@ const CurdForm = (props) => {
           useComputedRate();
           useComputedSum();
           useComputedFundSum();
+          useComputedTotalSalary();
         }}
       >
         <FormButtonGroup>

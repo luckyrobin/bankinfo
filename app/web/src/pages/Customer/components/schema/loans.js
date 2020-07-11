@@ -104,8 +104,12 @@ export default {
           },
           "total_income": {
             "type": "number",
-            "title": "借款人家庭月总收入",
+            "title": "借款人家庭月总收入（元）",
             "x-component": "NumberPicker",
+            "x-component-props": {
+              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+            },
           },
         },
       },
