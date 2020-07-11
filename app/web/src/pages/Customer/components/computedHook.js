@@ -71,7 +71,7 @@ export const useComputedUnitCost = () => {
 export const useComputedRate = () => {
   const { setFieldState, getFieldState } = createFormActions();
   const formula = (extrarate, loans_lrp) => {
-    return (extrarate / 100) + loans_lrp;
+    return ((extrarate / 100) + loans_lrp).toFixed(3);
   };
 
   onFieldValueChange$('loans_interest_extrarate').subscribe(({ value }) => {
@@ -91,7 +91,6 @@ export const useComputedRate = () => {
     })
   });
 };
-
 
 export const useComputedSum = () => {
   const { setFieldState, getFieldState } = createFormActions();
@@ -218,7 +217,12 @@ export const useComputedFundSum = () => {
 export const useComputedTotalSalary = () => {
   const { setFieldState, getFieldState } = createFormActions();
   const formula = (depend1 = 0, depend2 = 0, depend3 = 0, depend4 = 0) => {
-    return depend1 + depend2 + depend3 + depend4;
+    return (
+      (typeof depend1 === 'number' ? depend1 : 0) 
+    + (typeof depend2 === 'number' ? depend2 : 0)
+    + (typeof depend3 === 'number' ? depend3 : 0)
+    + (typeof depend4 === 'number' ? depend4 : 0)
+    );
   };
 
   onFieldValueChange$('customer_salary').subscribe(({ value }) => {
@@ -252,7 +256,7 @@ export const useComputedTotalSalary = () => {
     setFieldState('total_income', state => {
       const depend1 = getFieldState('customer_spouse_salary', state => state.value);
       const depend2 = getFieldState('customer_salary', state => state.value);
-      const depend3 = getFieldState('customer_salary', state => state.value);
+      const depend3 = getFieldState('guarantor_salary', state => state.value);
       state.value = formula(value, depend1, depend2, depend3);
     })
   });
