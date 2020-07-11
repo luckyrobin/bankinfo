@@ -159,7 +159,7 @@ module.exports = app => {
       //   type: Number,
       // },
       // customer_loans_limit: {
-      //   type: String,
+      //   type: Number,
       // },
       // customer_loans_method: {
       //   type: String,

@@ -57,7 +57,7 @@ export default {
           "customer_loans_limit": {
             "type": "string",
             "title": "期限（年）",
-            "x-component": "Input",
+            "x-component": "NumberPicker",
           },
           "customer_loans_method": {
             "type": "string",

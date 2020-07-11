@@ -7,7 +7,7 @@ export default [
   {
     "label": "贷款信息 -- 期限（年）",
     "value": "customer_loans_limit",
-    "type": "string"
+    "type": "number"
   },
   {
     "label": "贷款信息 -- 5 年人行LPR(%)",
@@ -32,7 +32,7 @@ export default [
   {
     "label": "公积金贷款额度 -- 期限（年）",
     "value": "fund_limit",
-    "type": "string"
+    "type": "number"
   },
   {
     "label": "担保公司 -- 担保公司名称",
