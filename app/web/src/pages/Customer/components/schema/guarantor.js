@@ -40,10 +40,15 @@ export default {
           },
           "guarantor_id": {
             "type": "string",
-            "title": "身份证号码",
+            "title": "身份证",
             "x-component": "Input",
-            "x-mega-props": {
-              "span": 2
+          },
+          "guarantor_birthday": {
+            "type": "string",
+            "title": "生日",
+            "x-component": "DatePicker",
+            "x-component-props": {
+              "format": "YYYY年MM月DD日",
             },
           },
           "guarantor_married": {
