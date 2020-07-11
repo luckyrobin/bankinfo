@@ -42,6 +42,11 @@ class CustomerService extends Service {
     });
   }
 
+  async drop() {
+    const mongoose = this.app.mongoose;
+    await mongoose.connection.db.dropCollection('customers');
+  }
+
 }
 
 module.exports = CustomerService;
