@@ -145,6 +145,7 @@ function Customer(props) {
         columns={columns}
         dataSource={customerList}
         options={{density: true, reload, fullScreen: true, setting: true, }}
+        search={false}
         toolBarRender={() => [
           <Button type="primary" onClick={handleAdd}>
             <PlusOutlined /> 新建
