@@ -3,7 +3,7 @@ export default {
     "type": "object",
     "x-component": "Card",
     "x-component-props": {
-      "title": "公积金贷款额度",
+      "title": "公积金贷款信息",
       "style": {}
     },
     "properties": {
@@ -20,13 +20,26 @@ export default {
         "properties": {
           "fund_lines": {
             "type": "number",
-            "title": "公积金贷款额度",
+            "title": "公积金贷款金额（万）",
             "x-component": "NumberPicker",
+            "x-component-props": {
+              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
+            },
           },
           "fund_limit": {
             "type": "number",
             "title": "期限（年）",
             "x-component": "NumberPicker",
+          },
+          "fund_rate": {
+            "type": "number",
+            "title": "公积金贷款利率（%）",
+            "x-component": "NumberPicker",
+            "x-component-props": {
+              formatter: value => `${value}%`,
+              parser: value => value.replace('%', '')
+            },
           },
           "fund_method": {
             "type": "string",

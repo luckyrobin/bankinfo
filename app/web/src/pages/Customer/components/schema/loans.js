@@ -3,7 +3,7 @@ export default {
     "type": "object",
     "x-component": "Card",
     "x-component-props": {
-      "title": "贷款信息",
+      "title": "商业贷款信息",
       "style": {}
     },
     "properties": {
@@ -20,7 +20,7 @@ export default {
         "properties": {
           "customer_loans_all": {
             "type": "number",
-            "title": "购买总金额",
+            "title": "购买总金额（万）",
             "x-component": "NumberPicker",
             "x-component-props": {
               "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
@@ -43,6 +43,15 @@ export default {
             "x-component-props": {
               formatter: value => `${value}%`,
               parser: value => value.replace('%', '')
+            },
+          },
+          "customer_loans_business": {
+            "type": "number",
+            "title": "商业贷款金额（万）",
+            "x-component": "NumberPicker",
+            "x-component-props": {
+              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "parser": value => value.replace(/\￥\s?|(,*)/g, ''),
             },
           },
           "customer_loans_limit": {
@@ -91,6 +100,11 @@ export default {
           "loans_month_sum": {
             "type": "number",
             "title": "月还款额",
+            "x-component": "NumberPicker",
+          },
+          "total_income": {
+            "type": "number",
+            "title": "借款人家庭月总收入",
             "x-component": "NumberPicker",
           },
         },

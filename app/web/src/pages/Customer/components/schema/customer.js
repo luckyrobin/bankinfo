@@ -100,7 +100,7 @@ export default {
           },
           "customer_loans": {
             "type": "number",
-            "title": "贷款金额（万元）",
+            "title": "贷款总金额（万）",
             "x-component": "NumberPicker",
             "x-component-props": {
               "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
