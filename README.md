@@ -17,6 +17,7 @@ $ docker run --name bank-mongo -v /data/mongo:/data/db -d -p 27017:27017 mongo
 
 ```bash
 $ npm i
+$ cd app/web npm i
 $ npm run dev
 $ open http://localhost:7001/
 ```
