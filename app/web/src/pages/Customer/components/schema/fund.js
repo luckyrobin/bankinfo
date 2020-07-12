@@ -23,7 +23,7 @@ export default {
             "title": "公积金贷款金额（万）",
             "x-component": "NumberPicker",
             "x-component-props": {
-              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },

@@ -23,7 +23,7 @@ export default {
             "title": "购买总金额（万）",
             "x-component": "NumberPicker",
             "x-component-props": {
-              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
@@ -32,7 +32,7 @@ export default {
             "title": "单价（元/m²）",
             "x-component": "NumberPicker",
             "x-component-props": {
-              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
@@ -50,7 +50,7 @@ export default {
             "title": "商业贷款金额（万）",
             "x-component": "NumberPicker",
             "x-component-props": {
-              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
@@ -110,7 +110,7 @@ export default {
               "span": 2
             },
             "x-component-props": {
-              "formatter": value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
