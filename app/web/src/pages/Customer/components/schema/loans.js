@@ -18,24 +18,6 @@ export default {
           "full": true
         },
         "properties": {
-          "customer_loans_all": {
-            "type": "number",
-            "title": "购买总金额（万）",
-            "x-component": "NumberPicker",
-            "x-component-props": {
-              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
-            },
-          },
-          "customer_loans_unit": {
-            "type": "number",
-            "title": "单价（元/m²）",
-            "x-component": "NumberPicker",
-            "x-component-props": {
-              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
-            },
-          },
           "customer_loans_mortgage": {
             "type": "number",
             "title": "抵押率（%）",

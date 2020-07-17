@@ -1,3 +1,4 @@
+import nzhcn from 'nzh/cn';
 import { FormEffectHooks, createFormActions } from '@formily/antd';
 import { getBirthday, toFixed } from '@/utils/utils';
 
@@ -259,6 +260,77 @@ export const useComputedTotalSalary = () => {
       const depend3 = getFieldState('guarantor_salary', state => state.value);
       state.value = formula(value, depend1, depend2, depend3);
     })
+  });
+};
+
+export const useHouseEffects = () => {
+  const { setFieldState, getFieldState } = createFormActions();
+  const formula = (depend1 = '', depend2 = '', depend3 = '', depend4 = '', depend5 = '') => {
+    return depend1 + depend2 + depend3 + depend4 + depend5;
+  };
+  onFieldValueChange$('customer_house_1').subscribe(({ value }) => {
+    setFieldState('customer_house', (state) => {
+      const depend2 = getFieldState('customer_house_2', state => state.value);
+      const depend3 = getFieldState('customer_house_3', state => state.value);
+      const depend4 = getFieldState('customer_house_4', state => state.value);
+      const depend5 = getFieldState('customer_house_other', state => state.value);
+      state.value = formula(value, depend2, depend3, depend4, depend5);
+    });
+  });
+
+  onFieldValueChange$('customer_house_2').subscribe(({ value }) => {
+    setFieldState('customer_house', (state) => {
+      const depend1 = getFieldState('customer_house_1', state => state.value);
+      const depend3 = getFieldState('customer_house_3', state => state.value);
+      const depend4 = getFieldState('customer_house_4', state => state.value);
+      const depend5 = getFieldState('customer_house_other', state => state.value);
+      state.value = formula(depend1, value, depend3, depend4, depend5);
+    });
+  });
+
+  onFieldValueChange$('customer_house_3').subscribe(({ value }) => {
+    setFieldState('customer_house', (state) => {
+      const depend1 = getFieldState('customer_house_1', state => state.value);
+      const depend2 = getFieldState('customer_house_2', state => state.value);
+      const depend4 = getFieldState('customer_house_4', state => state.value);
+      const depend5 = getFieldState('customer_house_other', state => state.value);
+      state.value = formula(depend1, depend2, value, depend4, depend5);
+    });
+  });
+
+  onFieldValueChange$('customer_house_4').subscribe(({ value }) => {
+    setFieldState('customer_house', (state) => {
+      const depend1 = getFieldState('customer_house_1', state => state.value);
+      const depend2 = getFieldState('customer_house_2', state => state.value);
+      const depend3 = getFieldState('customer_house_3', state => state.value);
+      const depend5 = getFieldState('customer_house_other', state => state.value);
+      state.value = formula(depend1, depend2, depend3, value, depend5);
+    });
+  });
+
+  onFieldValueChange$('customer_house_other').subscribe(({ value }) => {
+    setFieldState('customer_house', (state) => {
+      const depend1 = getFieldState('customer_house_1', state => state.value);
+      const depend2 = getFieldState('customer_house_2', state => state.value);
+      const depend3 = getFieldState('customer_house_3', state => state.value);
+      const depend4 = getFieldState('customer_house_4', state => state.value);
+      state.value = formula(depend1, depend2, depend3, depend4, value);
+    });
+  });
+};
+
+
+export const useCapsEffects = () => {
+  const { setFieldState } = createFormActions();
+  onFieldValueChange$('customer_loans_all').subscribe(({ value }) => {
+    setFieldState('customer_loans_all_caps', (state) => {
+      state.value = nzhcn.toMoney(value * 10000, { outSymbol: false });
+    });
+  });
+  onFieldValueChange$('customer_loans_first').subscribe(({ value }) => {
+    setFieldState('customer_loans_first_caps', (state) => {
+      state.value = nzhcn.toMoney(value * 10000, { outSymbol: false });
+    });
   });
 
 };

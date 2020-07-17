@@ -115,16 +115,6 @@ export default {
               "span": 2
             },
           },
-          "customer_house_area": {
-            "type": "number",
-            "title": "建筑面积（m²）",
-            "x-component": "NumberPicker",
-          },
-          "customer_house_area_share": {
-            "type": "number",
-            "title": "土地分摊面积（m²）",
-            "x-component": "NumberPicker",
-          },
           "customer_phone": {
             "type": "string",
             "title": "借款人联系电话",
