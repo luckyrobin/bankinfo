@@ -61,6 +61,11 @@ export default {
             "title": "月还款额",
             "x-component": "NumberPicker",
           },
+          "fund_month_loan_sum": {
+            "type": "number",
+            "title": "贷款还款总额（元）",
+            "x-component": "NumberPicker",
+          },
         },
       },
     },

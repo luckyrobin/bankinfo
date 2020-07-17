@@ -334,3 +334,26 @@ export const useCapsEffects = () => {
   });
 
 };
+
+export const useMonthTotalEffects = () => {
+  const { setFieldState, getFieldState } = createFormActions();
+  const formula = (depend1 = 0, depend2 = 0) => {
+    return (
+      (typeof depend1 === 'number' ? depend1 : 0) + (typeof depend2 === 'number' ? depend2 : 0)
+    );
+  };
+  onFieldValueChange$('fund_month_sum').subscribe(({ value }) => {
+    setFieldState('fund_month_loan_sum', (state) => {
+      const depend = getFieldState('loans_month_sum', state => state.value);
+      state.value = formula(depend, value);
+    });
+  });
+
+  onFieldValueChange$('loans_month_sum').subscribe(({ value }) => {
+    setFieldState('fund_month_loan_sum', (state) => {
+      const depend = getFieldState('fund_month_sum', state => state.value);
+      state.value = formula(value, depend);
+    });
+  });
+
+};
