@@ -27,6 +27,11 @@ export default {
               parser: value => value.replace('%', '')
             },
           },
+          "customer_loans_limit": {
+            "type": "string",
+            "title": "期限（年）",
+            "x-component": "NumberPicker",
+          },
           "customer_loans_business": {
             "type": "number",
             "title": "商业贷款金额（万）",
@@ -35,11 +40,6 @@ export default {
               "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
-          },
-          "customer_loans_limit": {
-            "type": "string",
-            "title": "期限（年）",
-            "x-component": "NumberPicker",
           },
           "customer_loans_method": {
             "type": "string",
