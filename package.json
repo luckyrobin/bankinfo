@@ -35,7 +35,7 @@
     "start": "egg-scripts start --daemon --title=egg-server-bankinfo --port 80",
     "stop": "egg-scripts stop --title=egg-server-bankinfo",
     "dev": "egg-bin dev",
-    "build": "APP_ROOT=$PWD/app/web umi build",
+    "build": "APP_ROOT=$PWD/app/web UMI_ENV=pro umi build",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
