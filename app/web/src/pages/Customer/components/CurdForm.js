@@ -17,6 +17,7 @@ import houseSchema from './schema/house';
 import loansSchema from './schema/loans';
 import companySchema from './schema/company';
 import fundSchema from './schema/fund';
+import sellerSchema from './schema/seller';
 
 setValidationLanguage('zh');
 import { useBirthdayEffects, useMarriedEffects, useComputedUnitCost, useComputedRate, useComputedSum, useComputedFundSum, useComputedTotalSalary, useHouseEffects, useCapsEffects } from './computedHook';
@@ -25,6 +26,7 @@ const schema = {
   type: 'object',
   properties: {
     ...houseSchema,
+    ...sellerSchema,
     ...customerSchema,
     ...customerSpouseSchema,
     ...guarantorSchema,
