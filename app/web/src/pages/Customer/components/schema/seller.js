@@ -38,12 +38,12 @@ export default {
           },
           "seller_sharer": {
             "type": "string",
-            "title": "卖方共有人姓名",
+            "title": "共有人姓名",
             "x-component": "Input",
           },
           "seller_sharer_id": {
             "type": "string",
-            "title": "卖方共有人身份证",
+            "title": "共有人身份证",
             "x-component": "Input",
           },
           "seller_sharer_relation": {

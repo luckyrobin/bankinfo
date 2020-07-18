@@ -69,6 +69,9 @@ export default {
             "type": "string",
             "title": "购买总金额（大写）",
             "x-component": "Input",
+            "x-mega-props": {
+              "span": 3
+            },
           },
           "customer_loans_first": {
             "type": "number",
@@ -83,6 +86,9 @@ export default {
             "type": "string",
             "title": "首付款金额（大写）",
             "x-component": "Input",
+            "x-mega-props": {
+              "span": 3
+            },
           },
           "customer_loans": {
             "type": "number",
