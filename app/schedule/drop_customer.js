@@ -13,7 +13,7 @@ module.exports = app => (
       this.ctx.logger.info(`run schedule task: time -> ${new Date()}`);
       try {
         const { service } = this.ctx;
-        await service.customer.drop();
+        await service.customer.dropLtLast(30);
       } catch (err) {
         this.ctx.logger.error(`schedule task: ${err}`);
       }

@@ -1,6 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
+const moment = require('moment');
 
 class CustomerService extends Service {
   async create(params) {
@@ -71,6 +72,11 @@ class CustomerService extends Service {
   async drop() {
     const mongoose = this.app.mongoose;
     await mongoose.connection.db.dropCollection('customers');
+  }
+
+  async dropLtLast(days = 30) {
+    const ltLast = moment().subtract(days, 'days');
+    return await this.ctx.model.Customer.deleteMany({ update_time: { $lt: moment.utc(ltLast) } });
   }
 
 }
