@@ -380,9 +380,9 @@ export const useLoanTotalEffects = () => {
   });
 
   onFieldValueChange$('customer_loans').subscribe(({ value }) => {
-    setFieldState('customer_loans_business', (state) => {
-      state.value = value;
-    });
+    // setFieldState('customer_loans_business', (state) => {
+    //   state.value = value;
+    // });
     setFieldState('fund_lines', (state) => {
       const depend = getFieldState('customer_loans_business', state => state.value);
       state.value = formula(value, depend);
