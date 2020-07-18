@@ -2,6 +2,7 @@ const proSettings = {
   navTheme: 'dark',
   // 拂晓蓝
   primaryColor: '#1890ff',
+  fontSize: '12px',
   layout: 'sidemenu',
   contentWidth: 'Fluid',
   fixedHeader: false,

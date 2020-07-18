@@ -124,7 +124,7 @@ function Customer(props) {
       render: (_, record) => {
         return (
           <span>
-            <Button type="primary" onClick={() => handleEdit(record)} style={{ marginRight: 8 }}>
+            <Button type="primary" size="small" onClick={() => handleEdit(record)} style={{ marginRight: 8 }}>
               编辑
             </Button>
             <Popconfirm
@@ -133,11 +133,11 @@ function Customer(props) {
                 handleDelete(record._id);
               }}
             >
-              <Button danger style={{ marginRight: 8 }}>
+              <Button danger size="small" style={{ marginRight: 8 }}>
                 删除
               </Button>
             </Popconfirm>
-            <Button icon={<PrinterOutlined />} onClick={() => handlePrint(record)}>打印</Button>
+            <Button icon={<PrinterOutlined />} size="small" onClick={() => handlePrint(record)}>打印</Button>
           </span>
         );
       },

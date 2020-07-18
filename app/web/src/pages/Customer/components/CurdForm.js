@@ -8,6 +8,7 @@ import {
   setValidationLanguage,
 } from '@formily/antd';
 import { FormCard, Input, Select, NumberPicker, DatePicker, FormMegaLayout } from '@formily/antd-components';
+import './CurdForm.less';
 
 import customerSchema from './schema/customer';
 import customerSpouseSchema from './schema/customer_spouse';
@@ -56,6 +57,7 @@ const CurdForm = (props) => {
   return (
     <Drawer key={Math.random()} title="客户信息录入" width="80%" visible={visible} onClose={onCancel}>
       <SchemaForm
+        className="customer_form"
         components={{ FormCard, FormMegaLayout, Input, Select, NumberPicker, DatePicker }}
         schema={schema}
         value={value}
@@ -74,10 +76,10 @@ const CurdForm = (props) => {
         }}
       >
         <FormButtonGroup>
-          <Submit loading={loading} onSubmit={onSubmit} style={{ marginRight: 8 }} size="large">
+          <Submit loading={loading} onSubmit={onSubmit} style={{ marginRight: 8, padding: '0 20px' }} size="large">
             保存
           </Submit>
-          <Reset size="large" />
+          <Reset size="large" style={{ padding: '0 20px' }} />
         </FormButtonGroup>
       </SchemaForm>
     </Drawer>
