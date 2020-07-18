@@ -363,4 +363,10 @@ export const useLoanTotalEffects = () => {
       state.value = formula(depend, value);
     });
   });
+
+  onFieldValueChange$('customer_loans').subscribe(({ value }) => {
+    setFieldState('customer_loans_business', (state) => {
+      state.value = value;
+    });
+  });
 };
