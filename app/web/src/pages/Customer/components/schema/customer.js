@@ -133,6 +133,14 @@ export default {
               "span": 2
             },
           },
+          "customer_card": {
+            "type": "string",
+            "title": "还款卡号",
+            "x-component": "Input",
+            "x-mega-props": {
+              "span": 2
+            },
+          },
         }
       }
     },
