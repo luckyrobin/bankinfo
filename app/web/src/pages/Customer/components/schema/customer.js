@@ -98,15 +98,6 @@ export default {
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
-          "customer_loans": {
-            "type": "number",
-            "title": "贷款总金额（万）",
-            "x-component": "NumberPicker",
-            "x-component-props": {
-              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
-            },
-          },
           "customer_house_place": {
             "type": "string",
             "title": "贷款房产位置",

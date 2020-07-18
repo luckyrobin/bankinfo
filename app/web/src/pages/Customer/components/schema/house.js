@@ -43,11 +43,6 @@ export default {
             "title": "楼室楼号",
             "x-component": "Input",
           },
-          "customer_house_other": {
-            "type": "string",
-            "title": "其他详细地址",
-            "x-component": "Input",
-          },
           "customer_house": {
             "type": "string",
             "title": "房产地址",
@@ -83,6 +78,15 @@ export default {
             "type": "string",
             "title": "首付款金额（大写）",
             "x-component": "Input",
+          },
+          "customer_loans": {
+            "type": "number",
+            "title": "贷款总金额（万）",
+            "x-component": "NumberPicker",
+            "x-component-props": {
+              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
+            },
           },
           "customer_house_area": {
             "type": "number",

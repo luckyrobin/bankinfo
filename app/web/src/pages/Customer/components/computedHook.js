@@ -265,16 +265,15 @@ export const useComputedTotalSalary = () => {
 
 export const useHouseEffects = () => {
   const { setFieldState, getFieldState } = createFormActions();
-  const formula = (depend1 = '', depend2 = '', depend3 = '', depend4 = '', depend5 = '') => {
-    return depend1 + depend2 + depend3 + depend4 + depend5;
+  const formula = (depend1 = '', depend2 = '', depend3 = '', depend4 = '') => {
+    return depend1 + depend2 + depend3 + depend4;
   };
   onFieldValueChange$('customer_house_1').subscribe(({ value }) => {
     setFieldState('customer_house', (state) => {
       const depend2 = getFieldState('customer_house_2', state => state.value);
       const depend3 = getFieldState('customer_house_3', state => state.value);
       const depend4 = getFieldState('customer_house_4', state => state.value);
-      const depend5 = getFieldState('customer_house_other', state => state.value);
-      state.value = formula(value, depend2, depend3, depend4, depend5);
+      state.value = formula(value, depend2, depend3, depend4);
     });
   });
 
@@ -283,8 +282,7 @@ export const useHouseEffects = () => {
       const depend1 = getFieldState('customer_house_1', state => state.value);
       const depend3 = getFieldState('customer_house_3', state => state.value);
       const depend4 = getFieldState('customer_house_4', state => state.value);
-      const depend5 = getFieldState('customer_house_other', state => state.value);
-      state.value = formula(depend1, value, depend3, depend4, depend5);
+      state.value = formula(depend1, value, depend3, depend4);
     });
   });
 
@@ -293,8 +291,7 @@ export const useHouseEffects = () => {
       const depend1 = getFieldState('customer_house_1', state => state.value);
       const depend2 = getFieldState('customer_house_2', state => state.value);
       const depend4 = getFieldState('customer_house_4', state => state.value);
-      const depend5 = getFieldState('customer_house_other', state => state.value);
-      state.value = formula(depend1, depend2, value, depend4, depend5);
+      state.value = formula(depend1, depend2, value, depend4);
     });
   });
 
@@ -303,18 +300,7 @@ export const useHouseEffects = () => {
       const depend1 = getFieldState('customer_house_1', state => state.value);
       const depend2 = getFieldState('customer_house_2', state => state.value);
       const depend3 = getFieldState('customer_house_3', state => state.value);
-      const depend5 = getFieldState('customer_house_other', state => state.value);
-      state.value = formula(depend1, depend2, depend3, value, depend5);
-    });
-  });
-
-  onFieldValueChange$('customer_house_other').subscribe(({ value }) => {
-    setFieldState('customer_house', (state) => {
-      const depend1 = getFieldState('customer_house_1', state => state.value);
-      const depend2 = getFieldState('customer_house_2', state => state.value);
-      const depend3 = getFieldState('customer_house_3', state => state.value);
-      const depend4 = getFieldState('customer_house_4', state => state.value);
-      state.value = formula(depend1, depend2, depend3, depend4, value);
+      state.value = formula(depend1, depend2, depend3, value);
     });
   });
 };
@@ -355,5 +341,26 @@ export const useMonthTotalEffects = () => {
       state.value = formula(value, depend);
     });
   });
+};
 
+export const useLoanTotalEffects = () => {
+  const { setFieldState, getFieldState } = createFormActions();
+  const formula = (depend1 = 0, depend2 = 0) => {
+    return (
+      (typeof depend1 === 'number' ? depend1 : 0) - (typeof depend2 === 'number' ? depend2 : 0)
+    );
+  };
+  onFieldValueChange$('customer_loans_all').subscribe(({ value }) => {
+    setFieldState('customer_loans', (state) => {
+      const depend = getFieldState('customer_loans_first', state => state.value);
+      state.value = formula(value, depend);
+    });
+  });
+
+  onFieldValueChange$('customer_loans_first').subscribe(({ value }) => {
+    setFieldState('customer_loans', (state) => {
+      const depend = getFieldState('customer_loans_all', state => state.value);
+      state.value = formula(depend, value);
+    });
+  });
 };
