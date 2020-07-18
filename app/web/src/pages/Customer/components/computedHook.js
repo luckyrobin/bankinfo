@@ -265,42 +265,57 @@ export const useComputedTotalSalary = () => {
 
 export const useHouseEffects = () => {
   const { setFieldState, getFieldState } = createFormActions();
-  const formula = (depend1 = '', depend2 = '', depend3 = '', depend4 = '') => {
-    return depend1 + depend2 + depend3 + depend4;
+  const formula = (depend0 = '', depend1 = '', depend2 = '', depend3 = '', depend4 = '') => {
+    return depend0 + depend1 + depend2 + depend3 + depend4;
   };
-  onFieldValueChange$('customer_house_1').subscribe(({ value }) => {
-    setFieldState('customer_house', (state) => {
+
+  onFieldValueChange$('customer_house_0').subscribe(({ value }) => {
+    setFieldState('customer_house_place', (state) => {
+      const depend1 = getFieldState('customer_house_1', state => state.value);
       const depend2 = getFieldState('customer_house_2', state => state.value);
       const depend3 = getFieldState('customer_house_3', state => state.value);
       const depend4 = getFieldState('customer_house_4', state => state.value);
-      state.value = formula(value, depend2, depend3, depend4);
+      state.value = formula(value, depend1, depend2, depend3, depend4);
+    });
+  });
+
+  onFieldValueChange$('customer_house_1').subscribe(({ value }) => {
+    setFieldState('customer_house_place', (state) => {
+      const depend0 = getFieldState('customer_house_0', state => state.value);
+      const depend2 = getFieldState('customer_house_2', state => state.value);
+      const depend3 = getFieldState('customer_house_3', state => state.value);
+      const depend4 = getFieldState('customer_house_4', state => state.value);
+      state.value = formula(depend0, value, depend2, depend3, depend4);
     });
   });
 
   onFieldValueChange$('customer_house_2').subscribe(({ value }) => {
-    setFieldState('customer_house', (state) => {
+    setFieldState('customer_house_place', (state) => {
+      const depend0 = getFieldState('customer_house_0', state => state.value);
       const depend1 = getFieldState('customer_house_1', state => state.value);
       const depend3 = getFieldState('customer_house_3', state => state.value);
       const depend4 = getFieldState('customer_house_4', state => state.value);
-      state.value = formula(depend1, value, depend3, depend4);
+      state.value = formula(depend0, depend1, value, depend3, depend4);
     });
   });
 
   onFieldValueChange$('customer_house_3').subscribe(({ value }) => {
-    setFieldState('customer_house', (state) => {
+    setFieldState('customer_house_place', (state) => {
+      const depend0 = getFieldState('customer_house_0', state => state.value);
       const depend1 = getFieldState('customer_house_1', state => state.value);
       const depend2 = getFieldState('customer_house_2', state => state.value);
       const depend4 = getFieldState('customer_house_4', state => state.value);
-      state.value = formula(depend1, depend2, value, depend4);
+      state.value = formula(depend0, depend1, depend2, value, depend4);
     });
   });
 
   onFieldValueChange$('customer_house_4').subscribe(({ value }) => {
-    setFieldState('customer_house', (state) => {
+    setFieldState('customer_house_place', (state) => {
+      const depend0 = getFieldState('customer_house_0', state => state.value);
       const depend1 = getFieldState('customer_house_1', state => state.value);
       const depend2 = getFieldState('customer_house_2', state => state.value);
       const depend3 = getFieldState('customer_house_3', state => state.value);
-      state.value = formula(depend1, depend2, depend3, value);
+      state.value = formula(depend0, depend1, depend2, depend3, value);
     });
   });
 };
@@ -325,7 +340,7 @@ export const useMonthTotalEffects = () => {
   const { setFieldState, getFieldState } = createFormActions();
   const formula = (depend1 = 0, depend2 = 0) => {
     return (
-      (typeof depend1 === 'number' ? depend1 : 0) + (typeof depend2 === 'number' ? depend2 : 0)
+      toFixed((typeof depend1 === 'number' ? depend1 : 0) + (typeof depend2 === 'number' ? depend2 : 0), 2)
     );
   };
   onFieldValueChange$('fund_month_sum').subscribe(({ value }) => {
@@ -347,7 +362,7 @@ export const useLoanTotalEffects = () => {
   const { setFieldState, getFieldState } = createFormActions();
   const formula = (depend1 = 0, depend2 = 0) => {
     return (
-      (typeof depend1 === 'number' ? depend1 : 0) - (typeof depend2 === 'number' ? depend2 : 0)
+      toFixed((typeof depend1 === 'number' ? depend1 : 0) - (typeof depend2 === 'number' ? depend2 : 0), 2)
     );
   };
   onFieldValueChange$('customer_loans_all').subscribe(({ value }) => {

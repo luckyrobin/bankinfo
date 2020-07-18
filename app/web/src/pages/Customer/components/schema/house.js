@@ -18,6 +18,11 @@ export default {
           "full": true
         },
         "properties": {
+          "customer_house_0": {
+            "type": "string",
+            "title": "区",
+            "x-component": "Input",
+          },
           "customer_house_1": {
             "type": "string",
             "title": "街道（村镇）",
@@ -43,9 +48,9 @@ export default {
             "title": "楼室楼号",
             "x-component": "Input",
           },
-          "customer_house": {
+          "customer_house_place": {
             "type": "string",
-            "title": "房产地址",
+            "title": "贷款房产位置",
             "x-component": "Input",
             "x-mega-props": {
               "span": 2

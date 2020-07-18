@@ -117,14 +117,6 @@ export default {
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
           },
-          "customer_house_place": {
-            "type": "string",
-            "title": "贷款房产位置",
-            "x-component": "Input",
-            "x-mega-props": {
-              "span": 2
-            },
-          },
           "customer_home_place": {
             "type": "string",
             "title": "家庭地址",
