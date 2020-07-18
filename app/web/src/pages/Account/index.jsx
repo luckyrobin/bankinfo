@@ -1,12 +1,14 @@
 import React from 'react';
-import { Card, Input } from 'antd';
+import { Card, Input, Modal, Button } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'umi';
 import { SchemaForm, FormButtonGroup, Submit, setValidationLanguage } from '@formily/antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 setValidationLanguage('zh');
 
 const Password = Input.Password;
+const { confirm } = Modal;
 
 const schema = {
   type: "object",
@@ -58,6 +60,18 @@ function Account(props) {
       payload: { ...values },
     });
   }
+  const handleDrop = () => {
+    confirm({
+      title: <div>您确定要删除所有客户资料吗?</div>,
+      icon: <ExclamationCircleOutlined />,
+      content: <span style={{ color: 'red', fontSize: 16 }}>请注意：该操作不可恢复！</span>,
+      onOk: () => {
+        dispatch({
+          type: 'customer/fetchDropCustomer',
+        });
+      },
+    });
+  };
   return (
     <PageHeaderWrapper>
       <Card>
@@ -71,6 +85,7 @@ function Account(props) {
           >
             <FormButtonGroup>
               <Submit onSubmit={handleSubmit} loading={submitting}>确认修改</Submit>
+              <Button danger onClick={handleDrop} style={{ marginLeft: 8 }}>删除所有客户资料</Button>
             </FormButtonGroup>
           </SchemaForm>
         </div>

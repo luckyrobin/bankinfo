@@ -115,6 +115,22 @@ class CustomerController extends HttpController {
       });
     }
   }
+
+  async drop() {
+    const { service } = this.ctx;
+    try {
+      const resp = await service.customer.drop();
+      this.success({
+        data: resp,
+      });
+    } catch (err) {
+      this.fail({
+        status: err.status,
+        code: err.code,
+        msg: err.message,
+      });
+    }
+  }
 }
 
 module.exports = CustomerController;

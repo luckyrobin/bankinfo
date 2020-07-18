@@ -1,4 +1,4 @@
-import { query, update, create, destroy } from '@/services/customer';
+import { query, update, create, destroy, drop } from '@/services/customer';
 
 const customerModel = {
   namespace: 'customer',
@@ -33,6 +33,10 @@ const customerModel = {
       yield put({
         type: 'fetch',
       })
+    },
+
+    *fetchDropCustomer(_, { call }) {
+      yield call(drop);
     },
   },
   reducers: {

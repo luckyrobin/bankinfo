@@ -155,6 +155,7 @@ function Customer(props) {
         search={false}
         toolBarRender={() => [
           <Search
+            loading={loading}
             placeholder="输入客户姓名或证件号码查询"
             onSearch={handleSearch}
             style={{ width: 300, marginRight: 8 }}

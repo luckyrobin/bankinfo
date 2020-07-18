@@ -23,3 +23,7 @@ export async function destroy(params) {
     method: 'DELETE',
   });
 }
+
+export async function drop() {
+  return request(`/api/customer/drop`);
+}

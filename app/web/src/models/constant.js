@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import { query, update } from '@/services/constant';
 
 const constantModel = {
@@ -16,6 +17,7 @@ const constantModel = {
 
     *fetchUpdateConstant({ payload }, { call, put }) {
       yield call(update, payload);
+      message.success('保存成功');
       yield put({
         type: 'fetch',
       })

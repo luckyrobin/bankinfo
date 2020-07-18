@@ -14,6 +14,8 @@ module.exports = app => {
 
   router.resources('/api/user', middleware.apiauth(), middleware.adminauth(), controller.user);
 
+  router.get('/api/customer/drop', middleware.apiauth(), middleware.adminauth(), controller.customer.drop);
+
   router.get('/api/constant', middleware.apiauth(), controller.constant.index);
 
   router.post('/api/constant', middleware.apiauth(), middleware.adminauth(), controller.constant.create);
