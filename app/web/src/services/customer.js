@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 
-export async function query() {
-  return request('/api/customer');
+export async function query(params) {
+  return request('/api/customer', { params });
 }
 
 export async function update(params) {

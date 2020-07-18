@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Popconfirm, message } from 'antd';
+import { Button, Popconfirm, Input, message } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import { PrinterOutlined, PlusOutlined } from '@ant-design/icons';
@@ -9,15 +9,18 @@ import moment from 'moment';
 import CurdForm from './components/CurdForm';
 import PrintModel from './components/PrintModel';
 
+const { Search } = Input;
+
 function Customer(props) {
   const { dispatch, customerList, constantList, templateList, loading } = props;
   const [visible, setVisible] = useState(false);
   const [curEditInfo, setCurEditInfo] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
 
-  const reload = () => {
+  const reload = (params = {}) => {
     dispatch({
       type: 'customer/fetch',
+      payload: params,
     });
     dispatch({
       type: 'constant/fetch',
@@ -78,6 +81,10 @@ function Customer(props) {
       payload: { _id, ...{ templates: params } },
     });
     setModalVisible(false);
+  }
+
+  const handleSearch = (value) => {
+    reload({ search: `${value}`.trim() })
   }
 
   const columns = [
@@ -147,6 +154,11 @@ function Customer(props) {
         options={{density: true, reload, fullScreen: true, setting: true, }}
         search={false}
         toolBarRender={() => [
+          <Search
+            placeholder="输入客户姓名或证件号码查询"
+            onSearch={handleSearch}
+            style={{ width: 300, marginRight: 8 }}
+          />,
           <Button type="primary" onClick={handleAdd}>
             <PlusOutlined /> 新建
           </Button>,

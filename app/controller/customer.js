@@ -36,9 +36,19 @@ class CustomerController extends HttpController {
   }
 
   async index() {
-    const { service } = this.ctx;
+    const { service, request, query } = this.ctx;
+    const { userId } = request;
+    const { search = '' } = query;
     try {
-      const resp = await service.customer.findAll();
+      let resp = {};
+      const userData = await service.user.findById(userId);
+      if (search.length > 0) {
+        resp = await service.customer.findBySearch(search);
+      } else if (userData.auth === 'admin') {
+        resp = await service.customer.findAll();
+      } else {
+        resp = await service.customer.findMyLast(userId);
+      }
       this.success({
         data: resp,
       });

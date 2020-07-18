@@ -42,6 +42,32 @@ class CustomerService extends Service {
     });
   }
 
+  async findBySearch(search) {
+    const result = await this.ctx.model.Customer.find({
+      $or: [{ customer_name: search }, { customer_id: search }],
+    }, {}, { lean: true }).sort('-update_time');
+    return result.map(item => {
+      const other = JSON.parse(item.other);
+      Reflect.deleteProperty(item, 'other');
+      return {
+        ...other,
+        ...item,
+      };
+    });
+  }
+
+  async findMyLast(userId) {
+    const result = await this.ctx.model.Customer.find({ operator: userId }, {}, { lean: true }).sort('-update_time').limit(1);
+    return result.map(item => {
+      const other = JSON.parse(item.other);
+      Reflect.deleteProperty(item, 'other');
+      return {
+        ...other,
+        ...item,
+      };
+    });
+  }
+
   async drop() {
     const mongoose = this.app.mongoose;
     await mongoose.connection.db.dropCollection('customers');
