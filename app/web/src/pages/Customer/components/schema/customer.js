@@ -84,6 +84,19 @@ export default {
             "title": "工作单位",
             "x-component": "Input",
           },
+          "customer_work_place": {
+            "type": "string",
+            "title": "单位地址",
+            "x-component": "Input",
+            "x-mega-props": {
+              "span": 2
+            },
+          },
+          "customer_work_phone": {
+            "type": "string",
+            "title": "单位电话",
+            "x-component": "Input",
+          },
           "customer_jobs": {
             "type": "string",
             "title": "职务",
@@ -111,19 +124,6 @@ export default {
             "title": "借款人联系电话",
             "x-component": "Input",
             "required": true,
-          },
-          "customer_work_phone": {
-            "type": "string",
-            "title": "单位电话",
-            "x-component": "Input",
-          },
-          "customer_work_place": {
-            "type": "string",
-            "title": "单位地址",
-            "x-component": "Input",
-            "x-mega-props": {
-              "span": 2
-            },
           },
           "customer_home_place": {
             "type": "string",

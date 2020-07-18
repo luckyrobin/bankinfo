@@ -1,5 +1,25 @@
 export default [
   {
+    "label": "借款人 -- 户籍地址",
+    "value": "customer_register_address",
+    "type": "string"
+  },
+  {
+    "label": "借款人配偶 -- 户籍地址",
+    "value": "customer_spouse_register_address",
+    "type": "string"
+  },
+  {
+    "label": "保证人 -- 户籍地址",
+    "value": "guarantor_register_address",
+    "type": "string"
+  },
+  {
+    "label": "保证人配偶 -- 户籍地址",
+    "value": "guarantor_spouse_register_address",
+    "type": "string"
+  },
+  {
     "label": "贷款信息 -- 抵押率（%）",
     "value": "customer_loans_mortgage",
     "type": "number"
