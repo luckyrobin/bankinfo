@@ -79,6 +79,12 @@ export default {
             "title": "户籍地址",
             "x-component": "Input",
           },
+          "customer_phone": {
+            "type": "string",
+            "title": "借款人联系电话",
+            "x-component": "Input",
+            "required": true,
+          },
           "customer_work_unit": {
             "type": "string",
             "title": "工作单位",
@@ -118,12 +124,6 @@ export default {
             "x-mega-props": {
               "span": 2
             },
-          },
-          "customer_phone": {
-            "type": "string",
-            "title": "借款人联系电话",
-            "x-component": "Input",
-            "required": true,
           },
           "customer_home_place": {
             "type": "string",

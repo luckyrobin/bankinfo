@@ -18,6 +18,7 @@ import loansSchema from './schema/loans';
 import companySchema from './schema/company';
 import fundSchema from './schema/fund';
 import sellerSchema from './schema/seller';
+import reservedSchema from './schema/reserved';
 
 setValidationLanguage('zh');
 import {
@@ -46,6 +47,7 @@ const schema = {
     ...loansSchema,
     ...fundSchema,
     ...companySchema,
+    ...reservedSchema,
   },
 };
 

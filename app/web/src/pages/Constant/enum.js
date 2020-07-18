@@ -69,4 +69,24 @@ export default [
     "value": "company_area",
     "type": "string"
   },
+  {
+    "label": "预留字段 -- 预留字段1",
+    "value": "reserved_1",
+    "type": "string"
+  },
+  {
+    "label": "预留字段 -- 预留字段2",
+    "value": "reserved_2",
+    "type": "string"
+  },
+  {
+    "label": "预留字段 -- 预留字段3",
+    "value": "reserved_3",
+    "type": "string"
+  },
+  {
+    "label": "预留字段 -- 预留字段4",
+    "value": "reserved_4",
+    "type": "string"
+  },
 ];
