@@ -73,6 +73,15 @@ export default {
               "span": 3
             },
           },
+          "customer_loans": {
+            "type": "number",
+            "title": "贷款总金额（万）",
+            "x-component": "NumberPicker",
+            "x-component-props": {
+              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
+            },
+          },
           "customer_loans_first": {
             "type": "number",
             "title": "首付款金额（万）",
@@ -87,16 +96,7 @@ export default {
             "title": "首付款金额（大写）",
             "x-component": "Input",
             "x-mega-props": {
-              "span": 3
-            },
-          },
-          "customer_loans": {
-            "type": "number",
-            "title": "贷款总金额（万）",
-            "x-component": "NumberPicker",
-            "x-component-props": {
-              "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-              "parser": value => value.replace(/￥\s?|(,*)/g, ''),
+              "span": 2
             },
           },
           "customer_house_area": {

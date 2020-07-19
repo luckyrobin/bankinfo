@@ -83,7 +83,6 @@ export default {
             "type": "string",
             "title": "借款人联系电话",
             "x-component": "Input",
-            "required": true,
           },
           "customer_work_unit": {
             "type": "string",

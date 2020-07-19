@@ -366,23 +366,17 @@ export const useLoanTotalEffects = () => {
     );
   };
   onFieldValueChange$('customer_loans_all').subscribe(({ value }) => {
-    setFieldState('customer_loans', (state) => {
-      const depend = getFieldState('customer_loans_first', state => state.value);
+    setFieldState('customer_loans_first', (state) => {
+      const depend = getFieldState('customer_loans', state => state.value);
       state.value = formula(value, depend);
     });
   });
 
-  onFieldValueChange$('customer_loans_first').subscribe(({ value }) => {
-    setFieldState('customer_loans', (state) => {
+  onFieldValueChange$('customer_loans').subscribe(({ value }) => {
+    setFieldState('customer_loans_first', (state) => {
       const depend = getFieldState('customer_loans_all', state => state.value);
       state.value = formula(depend, value);
     });
-  });
-
-  onFieldValueChange$('customer_loans').subscribe(({ value }) => {
-    // setFieldState('customer_loans_business', (state) => {
-    //   state.value = value;
-    // });
     setFieldState('fund_lines', (state) => {
       const depend = getFieldState('customer_loans_business', state => state.value);
       state.value = formula(value, depend);
