@@ -53,6 +53,9 @@ export default {
             "x-component-props": {
               "format": "YYYY年MM月DD日",
             },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
           },
           "customer_married": {
             "type": "string",

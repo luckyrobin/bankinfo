@@ -26,6 +26,9 @@ export default {
               "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
           },
           "fund_limit": {
             "type": "number",
@@ -60,11 +63,17 @@ export default {
             "type": "number",
             "title": "月还款额",
             "x-component": "NumberPicker",
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
           },
           "fund_month_loan_sum": {
             "type": "number",
-            "title": "贷款还款总额（元）",
+            "title": "贷款月还款总额（元）",
             "x-component": "NumberPicker",
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
           },
         },
       },

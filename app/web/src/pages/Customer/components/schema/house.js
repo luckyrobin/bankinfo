@@ -55,6 +55,9 @@ export default {
             "x-mega-props": {
               "span": 2
             },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
           },
           "customer_loans_all": {
             "type": "number",
@@ -71,6 +74,9 @@ export default {
             "x-component": "Input",
             "x-mega-props": {
               "span": 3
+            },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
             },
           },
           "customer_loans": {
@@ -90,6 +96,9 @@ export default {
               "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
           },
           "customer_loans_first_caps": {
             "type": "string",
@@ -97,6 +106,9 @@ export default {
             "x-component": "Input",
             "x-mega-props": {
               "span": 2
+            },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
             },
           },
           "customer_house_area": {
@@ -116,6 +128,9 @@ export default {
             "x-component-props": {
               "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
+            },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
             },
           },
         },

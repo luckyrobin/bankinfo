@@ -40,6 +40,9 @@ export default {
               "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
           },
           "customer_loans_method": {
             "type": "string",
@@ -83,6 +86,9 @@ export default {
             "type": "number",
             "title": "月还款额",
             "x-component": "NumberPicker",
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
           },
           "total_income": {
             "type": "number",
@@ -94,6 +100,9 @@ export default {
             "x-component-props": {
               "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
+            },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
             },
           },
         },
