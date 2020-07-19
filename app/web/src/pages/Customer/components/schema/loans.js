@@ -40,9 +40,6 @@ export default {
               "formatter": value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               "parser": value => value.replace(/￥\s?|(,*)/g, ''),
             },
-            "x-component-props": {
-              "style": { border: '1px dashed green' },
-            },
           },
           "customer_loans_method": {
             "type": "string",
