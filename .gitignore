@@ -19,3 +19,4 @@ app/public
 config/manifest.json
 app/web/.temp
 .umi
+/mongo-volume

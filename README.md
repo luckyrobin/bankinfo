@@ -12,7 +12,7 @@ see [egg docs][egg] for more detail.
 
 when you are first start, run mongodb
 ```bash
-$ docker run --name bank-mongo -v /data/mongo:/data/db -d -p 27017:27017 mongo
+$ docker run --name bank-mongo -v ./mongo-volume:/data/db -d -p 27017:27017 mongo
 ```
 
 ```bash

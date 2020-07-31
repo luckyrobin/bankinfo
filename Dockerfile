@@ -3,6 +3,8 @@ FROM node:slim
 ENV NODE_ENV production
 
 # Create app directory
+RUN mkdir -p /usr/src/project
+
 WORKDIR /usr/src/project
 
 # Install app dependencies
@@ -19,4 +21,4 @@ COPY . .
 
 EXPOSE 7001
 
-ENTRYPOINT npm run start
+CMD [ "npm", "run", "start" ]

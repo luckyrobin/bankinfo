@@ -49,8 +49,9 @@ module.exports = appInfo => {
       csrf: false,
     },
     mongoose: {
-      url: 'mongodb://127.0.0.1:27017/bank', // connect to other docker image port: 27017
+      url: `mongodb://root:123456@${process.env.docker_db}`,
       options: {
+        dbName: 'bank',
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,

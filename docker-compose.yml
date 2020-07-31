@@ -1,33 +1,41 @@
-version: '3.8'
+version: '3'
 
 services:
   
   app:
-    image: node:slim
+    build: .
+    depends_on:
+       - db
+    volumes:
+    - ./:/usr/src/project
+    environment:
+    - NODE_ENV=production
+    - docker_db=db
+    ports:
+      - "7001:7001"
+    restart: always
+
+  dbadmin:
+    image: mrvautin/adminmongo
+    container_name: adminmongo
     depends_on:
       - db
     volumes:
-      - ./:/usr/src/project
-    environment:
-      - NODE_ENV=production
-      - docker_db=db
-    working_dir: /usr/src/project
-    command: /bin/sh -c "npm i && npm run start" # not works: npm i && npm run start and not support bash
+      - ./config/dbadmin.json:/app/user/config/app.json
     ports:
-      - "7001:7001"
+      - "1234:1234"
+    restart: always  
 
   db:
     image: mongo # 镜像:版本
+    container_name: bankinfo-mongodb
+    volumes:
+      - ./mongo-volume:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root # 默认开启授权，并创建超管用户 mongo -u godis -p godis@admin --authenticationDatabase admin
       - MONGO_INITDB_ROOT_PASSWORD=123456 # 超管密码
-    volumes:
-      - ./mongo-volume:/data/db
+      - MONGO_INITDB_DATABASE=bank
     ports:
       - "27017:27017"
     restart: always
-    networks:
-      - mybridge
-
-networks:
-  mybridge:
