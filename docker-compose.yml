@@ -10,6 +10,7 @@ services:
     - ./:/usr/src/project
     environment:
     - NODE_ENV=production
+    - EGG_SERVER_ENV=production
     - docker_db=db
     ports:
       - "7001:7001"
