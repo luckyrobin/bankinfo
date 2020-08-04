@@ -26,13 +26,12 @@ $ open http://localhost:7001/
 
 ```bash
 $ npm run build
-$ docker build -t bank-app ./
 ```
 
 ### Deploy
 
 ```bash
-$ docker run -itd --name bank-app -p 7001:7001 bank-app:latest
+$ docker-compose up -d
 ```
 
 ### Helper
@@ -43,9 +42,9 @@ $ docker exec -it bank-app /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
 # check log
 $ docker logs -f bank-app
 # restart
-$ docker restart bank-app
+$ docker-compose restart
 # stop
-$ docker stop bank-app
+$ docker-compose stop
 ```
 
 ### npm scripts
