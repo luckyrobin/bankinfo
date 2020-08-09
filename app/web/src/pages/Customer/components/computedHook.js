@@ -333,6 +333,16 @@ export const useCapsEffects = () => {
       state.value = nzhcn.toMoney(value * 10000, { outSymbol: false });
     });
   });
+  onFieldValueChange$('customer_loans_business').subscribe(({ value }) => {
+    setFieldState('customer_loans_business_caps', (state) => {
+      state.value = nzhcn.toMoney(value * 10000, { outSymbol: false });
+    });
+  });
+  onFieldValueChange$('fund_lines').subscribe(({ value }) => {
+    setFieldState('fund_lines_caps', (state) => {
+      state.value = nzhcn.toMoney(value * 10000, { outSymbol: false });
+    });
+  });
 
 };
 

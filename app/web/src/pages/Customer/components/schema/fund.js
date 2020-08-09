@@ -75,6 +75,17 @@ export default {
               "style": { border: '1px dashed green' },
             },
           },
+          "fund_lines_caps": {
+            "type": "string",
+            "title": "公积金贷款金额（大写）",
+            "x-component": "Input",
+            "x-mega-props": {
+              "span": 2
+            },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
+          },
         },
       },
     },

@@ -102,6 +102,17 @@ export default {
               "style": { border: '1px dashed green' },
             },
           },
+          "customer_loans_business_caps": {
+            "type": "string",
+            "title": "商业贷款金额（大写）",
+            "x-component": "Input",
+            "x-mega-props": {
+              "span": 2
+            },
+            "x-component-props": {
+              "style": { border: '1px dashed green' },
+            },
+          },
         },
       },
     },
